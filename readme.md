@@ -13,6 +13,7 @@ These functions are used to create an updated text entry from a new parameter va
 It is also possible now to create the Combobox item list by connecting it with a parameter through the Attachment.
 
 The Demo Project:
+
 The AudioProcessorValueTreeState class design does not allow the addition of user defined Attachments from outside the class definition. Because of that I had to modify two files from the juce framework to make things possible.
 Before compiling the demo project you will have to replace the two files juce_AudioProcessorValueTreeState.cpp and juce_AudioProcessorValueTreeState.h
 with the versions that are supplied with this release.
