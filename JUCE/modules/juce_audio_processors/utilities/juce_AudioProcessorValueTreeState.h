@@ -156,30 +156,30 @@ public:
         JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SliderAttachment)
     };
 
-    //==============================================================================
-    /** An object of this class maintains a connection between a ComboBox and a parameter
-        in an AudioProcessorValueTreeState.
+	//==============================================================================
+	/** An object of this class maintains a connection between a ComboBox and a parameter
+	in an AudioProcessorValueTreeState.
 
-        During the lifetime of this ComboBoxAttachment object, it keeps the two things in
-        sync, making it easy to connect a combo box to a parameter. When this object is
-        deleted, the connection is broken. Make sure that your AudioProcessorValueTreeState
-        and ComboBox aren't deleted before this object!
-    */
-    class JUCE_API  ComboBoxAttachment
-    {
-    public:
-        ComboBoxAttachment (AudioProcessorValueTreeState& stateToControl,
-                            const String& parameterID,
-                            ComboBox& comboBoxToControl,
-		                    bool populateCombobox = false);
-        ~ComboBoxAttachment();
+	During the lifetime of this ComboBoxAttachment object, it keeps the two things in
+	sync, making it easy to connect a combo box to a parameter. When this object is
+	deleted, the connection is broken. Make sure that your AudioProcessorValueTreeState
+	and ComboBox aren't deleted before this object!
+	*/
+	class JUCE_API  ComboBoxAttachment
+	{
+	public:
+		ComboBoxAttachment(AudioProcessorValueTreeState& stateToControl,
+			const String& parameterID,
+			ComboBox& comboBoxToControl,
+			bool populateCombobox = false);
+		~ComboBoxAttachment();
 
-    private:
-        struct Pimpl;
-        friend struct ContainerDeletePolicy<Pimpl>;
-        ScopedPointer<Pimpl> pimpl;
-        JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ComboBoxAttachment)
-    };
+	private:
+		struct Pimpl;
+		friend struct ContainerDeletePolicy<Pimpl>;
+		ScopedPointer<Pimpl> pimpl;
+		JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ComboBoxAttachment)
+	};
 
 	//==============================================================================
 	/** An object of this class maintains a connection between a Label and a parameter

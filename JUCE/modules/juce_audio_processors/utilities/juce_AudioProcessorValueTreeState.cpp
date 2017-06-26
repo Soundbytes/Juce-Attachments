@@ -333,9 +333,9 @@ struct AudioProcessorValueTreeState::ComboBoxAttachment::Pimpl  : private Attach
     Pimpl (AudioProcessorValueTreeState& s, const String& p, ComboBox& c, bool populate)
         : AttachedControlBase (s, p), combo (c), ignoreCallbacks (false)
     {
+		if (populate) populateComboBox(); // the ComboBox must be populated before sendInitialUpdate is called!
         sendInitialUpdate();
         combo.addListener (this);
-		if (populate) populateComboBox();
     }
 
     ~Pimpl()
@@ -349,7 +349,7 @@ struct AudioProcessorValueTreeState::ComboBoxAttachment::Pimpl  : private Attach
 
     void setValue (float newValue) override
     {
-        const ScopedLock selfCallbackLock (selfCallbackMutex);
+		const ScopedLock selfCallbackLock (selfCallbackMutex);
         {
             ScopedValueSetter<bool> svs (ignoreCallbacks, true);
             combo.setSelectedId(getItemIdFromVal(newValue), sendNotificationSync);
