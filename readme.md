@@ -22,5 +22,4 @@ Known Issues:
 - When the text entry evaluates to the previous parameter value the Label is not updated with the proper text that corresponds to that parameter value. 
 Instead the text entry is then left unchanged.
 (Example MidiCC label: When the a user enter a "7" the label should be updated to show the cc name "Volume (coarse)". This will only work if the previous parameter value was differrent from seven. In that case the label shows "7" instead of the controller name.)
-- there is still an issue with text initialization. Text labels do not always show the text that corresponds to the parameter default value when the standdalone app is loaded. 
  
