@@ -17,7 +17,7 @@ SbSliderMonitor::SbSliderMonitor(String name, AudioProcessorValueTreeState& para
 	: paramID(String::empty)
 {
 	addAndMakeVisible(lblState = new Label("lblState",
-		TRANS("Midi Monitor")));
+		TRANS("Slider Monitor")));
 	lblState->setFont(Font(15.00f, Font::plain).withTypefaceStyle("Regular"));
 	lblState->setJustificationType(Justification::centredLeft);
 	lblState->setEditable(false, false, false);
@@ -25,7 +25,7 @@ SbSliderMonitor::SbSliderMonitor(String name, AudioProcessorValueTreeState& para
 	lblState->setColour(TextEditor::backgroundColourId, Colour(0x00000000));
 
 	addAndMakeVisible(lblMonitor = new Label("lblMonitor",
-		TRANS("Pulse!")));
+		TRANS("www.soundbytes.de")));
 	lblMonitor->setFont(Font(15.00f, Font::plain).withTypefaceStyle("Regular"));
 	lblMonitor->setJustificationType(Justification::centredLeft);
 	lblMonitor->setEditable(false, false, false);
