@@ -1,31 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="fDXG33" name="SiderMidiMonCombined" displaySplashScreen="1"
-              reportAppUsage="1" splashScreenColour="Dark" projectType="audioplug"
-              version="1.0.0" bundleIdentifier="com.yourcompany.SiderMidiMonCombined"
-              includeBinaryInAppConfig="1" buildVST="1" buildVST3="1" buildAU="1"
-              buildAUv3="0" buildRTAS="0" buildAAX="1" buildStandalone="1"
-              enableIAA="0" pluginName="SiderMidiMonCombined" pluginDesc="SiderMidiMonCombined"
-              pluginManufacturer="yourcompany" pluginManufacturerCode="Manu"
+<JUCERPROJECT id="fDXG33" name="SliderMonitor" displaySplashScreen="1" reportAppUsage="1"
+              splashScreenColour="Dark" projectType="audioplug" version="1.0.0"
+              bundleIdentifier="com.yourcompany.SliderMonitor" includeBinaryInAppConfig="1"
+              buildVST="1" buildVST3="1" buildAU="1" buildAUv3="0" buildRTAS="0"
+              buildAAX="1" buildStandalone="1" enableIAA="0" pluginName="SliderMonitor"
+              pluginDesc="SliderMonitor" pluginManufacturer="yourcompany" pluginManufacturerCode="Manu"
               pluginCode="Fdxg" pluginChannelConfigs="{2, 2}" pluginIsSynth="0"
               pluginWantsMidiIn="1" pluginProducesMidiOut="0" pluginIsMidiEffectPlugin="0"
-              pluginEditorRequiresKeys="0" pluginAUExportPrefix="SiderMidiMonCombinedAU"
-              pluginRTASCategory="" aaxIdentifier="com.yourcompany.SiderMidiMonCombined"
+              pluginEditorRequiresKeys="0" pluginAUExportPrefix="SliderMonitorAU"
+              pluginRTASCategory="" aaxIdentifier="com.yourcompany.SliderMonitor"
               pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="5.0.2">
-  <MAINGROUP id="rtDtn0" name="SiderMidiMonCombined">
+  <MAINGROUP id="rtDtn0" name="SliderMonitor">
     <GROUP id="{D1B8BA93-0386-991E-4E08-98AC31DD4A4A}" name="Source">
       <FILE id="uj4Kl7" name="SbSlider.cpp" compile="1" resource="0" file="Source/SbSlider.cpp"/>
       <FILE id="Xz19UO" name="SbSlider.h" compile="0" resource="0" file="Source/SbSlider.h"/>
-      <FILE id="VJyy5I" name="SliderMidiMonParameters.cpp" compile="1" resource="0"
-            file="Source/SliderMidiMonParameters.cpp"/>
-      <FILE id="cmQsNq" name="SliderMidiMonParameters.h" compile="0" resource="0"
-            file="Source/SliderMidiMonParameters.h"/>
-      <FILE id="hgXF95" name="TabComponent.cpp" compile="1" resource="0"
-            file="Source/TabComponent.cpp"/>
-      <FILE id="CK92WT" name="TabComponent.h" compile="0" resource="0" file="Source/TabComponent.h"/>
-      <FILE id="DfhuF1" name="SbMidiMonitor.cpp" compile="1" resource="0"
-            file="Source/SbMidiMonitor.cpp"/>
-      <FILE id="Chz71g" name="SbMidiMonitor.h" compile="0" resource="0" file="Source/SbMidiMonitor.h"/>
+      <FILE id="VJyy5I" name="SliderMonParameters.cpp" compile="1" resource="0"
+            file="Source/SliderMonParameters.cpp"/>
+      <FILE id="cmQsNq" name="SliderMonParameters.h" compile="0" resource="0"
+            file="Source/SliderMonParameters.h"/>
+      <FILE id="DfhuF1" name="SbSliderMonitor.cpp" compile="1" resource="0"
+            file="Source/SbSliderMonitor.cpp"/>
+      <FILE id="Chz71g" name="SbSliderMonitor.h" compile="0" resource="0"
+            file="Source/SbSliderMonitor.h"/>
       <FILE id="UEGxfP" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
       <FILE id="VKhV9n" name="PluginProcessor.h" compile="0" resource="0"
@@ -39,9 +36,9 @@
     <VS2015 targetFolder="Builds/VisualStudio2015">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="x64"
-                       isDebug="1" optimisation="1" targetName="SiderMidiMonCombined"/>
+                       isDebug="1" optimisation="1" targetName="SliderMonitor"/>
         <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="x64"
-                       isDebug="0" optimisation="3" targetName="SiderMidiMonCombined"/>
+                       isDebug="0" optimisation="3" targetName="SliderMonitor"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path="../../JUCE/modules"/>

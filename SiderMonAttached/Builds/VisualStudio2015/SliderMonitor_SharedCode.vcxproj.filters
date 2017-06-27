@@ -2,11 +2,11 @@
 
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="SiderMidiMonCombined\Source">
-      <UniqueIdentifier>{249FDDFD-803E-4D53-820B-DD2B087B023D}</UniqueIdentifier>
+    <Filter Include="SliderMonitor\Source">
+      <UniqueIdentifier>{46F0BE32-12AF-36F8-3C5B-0F667573DFFE}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SiderMidiMonCombined">
-      <UniqueIdentifier>{44EF88E5-BA89-CC08-CD78-B255A49F8E69}</UniqueIdentifier>
+    <Filter Include="SliderMonitor">
+      <UniqueIdentifier>{25D09E4E-661F-A973-7CF0-CE10AA0C3BA9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Juce Modules\juce_audio_basics\audio_play_head">
       <UniqueIdentifier>{52045BA8-DF89-5074-688D-A0977F25B09C}</UniqueIdentifier>
@@ -389,22 +389,19 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\SbSlider.cpp">
-      <Filter>SiderMidiMonCombined\Source</Filter>
+      <Filter>SliderMonitor\Source</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\SliderMonParameters.cpp">
-      <Filter>SiderMidiMonCombined\Source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\TabComponent.cpp">
-      <Filter>SiderMidiMonCombined\Source</Filter>
+      <Filter>SliderMonitor\Source</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\SbSliderMonitor.cpp">
-      <Filter>SiderMidiMonCombined\Source</Filter>
+      <Filter>SliderMonitor\Source</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\PluginProcessor.cpp">
-      <Filter>SiderMidiMonCombined\Source</Filter>
+      <Filter>SliderMonitor\Source</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\PluginEditor.cpp">
-      <Filter>SiderMidiMonCombined\Source</Filter>
+      <Filter>SliderMonitor\Source</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\JUCE\modules\juce_audio_basics\buffers\juce_AudioChannelSet.cpp">
       <Filter>Juce Modules\juce_audio_basics\buffers</Filter>
@@ -2251,22 +2248,19 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\SbSlider.h">
-      <Filter>SiderMidiMonCombined\Source</Filter>
+      <Filter>SliderMonitor\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\SliderMonParameters.h">
-      <Filter>SiderMidiMonCombined\Source</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\TabComponent.h">
-      <Filter>SiderMidiMonCombined\Source</Filter>
+      <Filter>SliderMonitor\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\SbSliderMonitor.h">
-      <Filter>SiderMidiMonCombined\Source</Filter>
+      <Filter>SliderMonitor\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\PluginProcessor.h">
-      <Filter>SiderMidiMonCombined\Source</Filter>
+      <Filter>SliderMonitor\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\PluginEditor.h">
-      <Filter>SiderMidiMonCombined\Source</Filter>
+      <Filter>SliderMonitor\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\JUCE\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.h">
       <Filter>Juce Modules\juce_audio_basics\audio_play_head</Filter>

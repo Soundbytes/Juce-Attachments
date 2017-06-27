@@ -13,9 +13,9 @@ BEGIN
   BEGIN
     BLOCK "040904E4"
     BEGIN
-      VALUE "FileDescription",  "SiderMidiMonCombined\0"
+      VALUE "FileDescription",  "SliderMonitor\0"
       VALUE "FileVersion",  "1.0.0\0"
-      VALUE "ProductName",  "SiderMidiMonCombined\0"
+      VALUE "ProductName",  "SliderMonitor\0"
       VALUE "ProductVersion",  "1.0.0\0"
     END
   END

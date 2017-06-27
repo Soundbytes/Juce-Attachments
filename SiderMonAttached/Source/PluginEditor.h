@@ -12,9 +12,8 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "PluginProcessor.h"
-#include "TabComponent.h"
-#include "SbMidiMonitor.h"
-#include "SliderMidiMonParameters.h"
+#include "SbSliderMonitor.h"
+#include "SliderMonParameters.h"
 
 typedef AudioProcessorValueTreeState::SliderAttachment SliderAttachment;
 typedef AudioProcessorValueTreeState::LabelAttachment LabelAttachment;
@@ -23,11 +22,11 @@ typedef AudioProcessorValueTreeState::LabelAttachment LabelAttachment;
 //==============================================================================
 /**
 */
-class SiderMidiMonCombinedAudioProcessorEditor  : public AudioProcessorEditor
+class SliderMonitorAudioProcessorEditor  : public AudioProcessorEditor
 {
 public:
-    SiderMidiMonCombinedAudioProcessorEditor (SiderMidiMonCombinedAudioProcessor&);
-    ~SiderMidiMonCombinedAudioProcessorEditor();
+    SliderMonitorAudioProcessorEditor (SliderMonitorAudioProcessor&);
+    ~SliderMonitorAudioProcessorEditor();
 
     //==============================================================================
 
@@ -39,9 +38,9 @@ private:
 
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
-    SiderMidiMonCombinedAudioProcessor& processor;
+    SliderMonitorAudioProcessor& processor;
 
-	ScopedPointer<SbMidiSliderMonitor> midiSldMon;
+	ScopedPointer<SbSliderMonitor> sldMon;
 
 	ScopedPointer<SbSlider> slider0;
 	ScopedPointer<SbSlider> slider1;
@@ -51,5 +50,5 @@ private:
 	ScopedPointer<SbSliderAttachment> att1Db;
 	ScopedPointer<SbSliderAttachment> att2Freq;
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SiderMidiMonCombinedAudioProcessorEditor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SliderMonitorAudioProcessorEditor)
 };

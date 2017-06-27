@@ -13,7 +13,7 @@
 
 
 //==============================================================================
-SiderMidiMonCombinedAudioProcessor::SiderMidiMonCombinedAudioProcessor()
+SliderMonitorAudioProcessor::SliderMonitorAudioProcessor()
 	: params(*this), AudioProcessor(BusesProperties().withInput("Input", AudioChannelSet::stereo(), true)
 		.withOutput("Output", AudioChannelSet::stereo(), true))
 //#ifndef JucePlugin_PreferredChannelConfigurations
@@ -29,17 +29,17 @@ SiderMidiMonCombinedAudioProcessor::SiderMidiMonCombinedAudioProcessor()
 {
 }
 
-SiderMidiMonCombinedAudioProcessor::~SiderMidiMonCombinedAudioProcessor()
+SliderMonitorAudioProcessor::~SliderMonitorAudioProcessor()
 {
 }
 
 //==============================================================================
-const String SiderMidiMonCombinedAudioProcessor::getName() const
+const String SliderMonitorAudioProcessor::getName() const
 {
     return JucePlugin_Name;
 }
 
-bool SiderMidiMonCombinedAudioProcessor::acceptsMidi() const
+bool SliderMonitorAudioProcessor::acceptsMidi() const
 {
    #if JucePlugin_WantsMidiInput
     return true;
@@ -48,7 +48,7 @@ bool SiderMidiMonCombinedAudioProcessor::acceptsMidi() const
    #endif
 }
 
-bool SiderMidiMonCombinedAudioProcessor::producesMidi() const
+bool SliderMonitorAudioProcessor::producesMidi() const
 {
    #if JucePlugin_ProducesMidiOutput
     return true;
@@ -57,50 +57,50 @@ bool SiderMidiMonCombinedAudioProcessor::producesMidi() const
    #endif
 }
 
-double SiderMidiMonCombinedAudioProcessor::getTailLengthSeconds() const
+double SliderMonitorAudioProcessor::getTailLengthSeconds() const
 {
     return 0.0;
 }
 
-int SiderMidiMonCombinedAudioProcessor::getNumPrograms()
+int SliderMonitorAudioProcessor::getNumPrograms()
 {
     return 1;   // NB: some hosts don't cope very well if you tell them there are 0 programs,
                 // so this should be at least 1, even if you're not really implementing programs.
 }
 
-int SiderMidiMonCombinedAudioProcessor::getCurrentProgram()
+int SliderMonitorAudioProcessor::getCurrentProgram()
 {
     return 0;
 }
 
-void SiderMidiMonCombinedAudioProcessor::setCurrentProgram (int index)
+void SliderMonitorAudioProcessor::setCurrentProgram (int index)
 {
 }
 
-const String SiderMidiMonCombinedAudioProcessor::getProgramName (int index)
+const String SliderMonitorAudioProcessor::getProgramName (int index)
 {
     return {};
 }
 
-void SiderMidiMonCombinedAudioProcessor::changeProgramName (int index, const String& newName)
+void SliderMonitorAudioProcessor::changeProgramName (int index, const String& newName)
 {
 }
 
 //==============================================================================
-void SiderMidiMonCombinedAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
+void SliderMonitorAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
 }
 
-void SiderMidiMonCombinedAudioProcessor::releaseResources()
+void SliderMonitorAudioProcessor::releaseResources()
 {
     // When playback stops, you can use this as an opportunity to free up any
     // spare memory, etc.
 }
 
 #ifndef JucePlugin_PreferredChannelConfigurations
-bool SiderMidiMonCombinedAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts) const
+bool SliderMonitorAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts) const
 {
   #if JucePlugin_IsMidiEffect
     ignoreUnused (layouts);
@@ -123,10 +123,9 @@ bool SiderMidiMonCombinedAudioProcessor::isBusesLayoutSupported (const BusesLayo
 }
 #endif
 
-void SiderMidiMonCombinedAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& midiMessages)
+void SliderMonitorAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& midiMessages)
 {
 	const int numSamples = buffer.getNumSamples();
-	midiMonState.processNextMidiBuffer(midiMessages, 0, numSamples);
 	
 	const int totalNumInputChannels  = getTotalNumInputChannels();
     const int totalNumOutputChannels = getTotalNumOutputChannels();
@@ -151,25 +150,25 @@ void SiderMidiMonCombinedAudioProcessor::processBlock (AudioSampleBuffer& buffer
 }
 
 //==============================================================================
-bool SiderMidiMonCombinedAudioProcessor::hasEditor() const
+bool SliderMonitorAudioProcessor::hasEditor() const
 {
     return true; // (change this to false if you choose to not supply an editor)
 }
 
-AudioProcessorEditor* SiderMidiMonCombinedAudioProcessor::createEditor()
+AudioProcessorEditor* SliderMonitorAudioProcessor::createEditor()
 {
-    return new SiderMidiMonCombinedAudioProcessorEditor (*this);
+    return new SliderMonitorAudioProcessorEditor (*this);
 }
 
 //==============================================================================
-void SiderMidiMonCombinedAudioProcessor::getStateInformation (MemoryBlock& destData)
+void SliderMonitorAudioProcessor::getStateInformation (MemoryBlock& destData)
 {
     // You should use this method to store your parameters in the memory block.
     // You could do that either as raw data, or use the XML or ValueTree classes
     // as intermediaries to make it easy to save and load complex data.
 }
 
-void SiderMidiMonCombinedAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
+void SliderMonitorAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
@@ -179,5 +178,5 @@ void SiderMidiMonCombinedAudioProcessor::setStateInformation (const void* data, 
 // This creates new instances of the plugin..
 AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
-    return new SiderMidiMonCombinedAudioProcessor();
+    return new SliderMonitorAudioProcessor();
 }

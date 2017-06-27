@@ -11,17 +11,17 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "SbMidiMonitor.h"
-#include "SliderMidiMonParameters.h"
+#include "SbSliderMonitor.h"
+#include "SliderMonParameters.h"
 //==============================================================================
 /**
 */
-class SiderMidiMonCombinedAudioProcessor  : public AudioProcessor
+class SliderMonitorAudioProcessor  : public AudioProcessor
 {
 public:
     //==============================================================================
-    SiderMidiMonCombinedAudioProcessor();
-    ~SiderMidiMonCombinedAudioProcessor();
+    SliderMonitorAudioProcessor();
+    ~SliderMonitorAudioProcessor();
 
     //==============================================================================
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;
@@ -55,12 +55,10 @@ public:
     void getStateInformation (MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
-	SbMidiMonitorState* getMidiMonState() { return &midiMonState; }
 	SliderMidiMonParameters & getParams() { return params; }
 private:
-	SbMidiMonitorState midiMonState;
 	SliderMidiMonParameters params;
 
     //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SiderMidiMonCombinedAudioProcessor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SliderMonitorAudioProcessor)
 };

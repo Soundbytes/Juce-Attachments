@@ -294,10 +294,10 @@
  #define JucePlugin_Enable_IAA             0
 #endif
 #ifndef  JucePlugin_Name
- #define JucePlugin_Name                   "SiderMidiMonCombined"
+ #define JucePlugin_Name                   "SliderMonitor"
 #endif
 #ifndef  JucePlugin_Desc
- #define JucePlugin_Desc                   "SiderMidiMonCombined"
+ #define JucePlugin_Desc                   "SliderMonitor"
 #endif
 #ifndef  JucePlugin_Manufacturer
  #define JucePlugin_Manufacturer           "yourcompany"
@@ -351,16 +351,16 @@
  #define JucePlugin_AUSubType              JucePlugin_PluginCode
 #endif
 #ifndef  JucePlugin_AUExportPrefix
- #define JucePlugin_AUExportPrefix         SiderMidiMonCombinedAU
+ #define JucePlugin_AUExportPrefix         SliderMonitorAU
 #endif
 #ifndef  JucePlugin_AUExportPrefixQuoted
- #define JucePlugin_AUExportPrefixQuoted   "SiderMidiMonCombinedAU"
+ #define JucePlugin_AUExportPrefixQuoted   "SliderMonitorAU"
 #endif
 #ifndef  JucePlugin_AUManufacturerCode
  #define JucePlugin_AUManufacturerCode     JucePlugin_ManufacturerCode
 #endif
 #ifndef  JucePlugin_CFBundleIdentifier
- #define JucePlugin_CFBundleIdentifier     com.yourcompany.SiderMidiMonCombined
+ #define JucePlugin_CFBundleIdentifier     com.yourcompany.SliderMonitor
 #endif
 #ifndef  JucePlugin_RTASCategory
  #define JucePlugin_RTASCategory           ePlugInCategory_None
@@ -378,7 +378,7 @@
  #define JucePlugin_RTASDisableMultiMono   0
 #endif
 #ifndef  JucePlugin_AAXIdentifier
- #define JucePlugin_AAXIdentifier          com.yourcompany.SiderMidiMonCombined
+ #define JucePlugin_AAXIdentifier          com.yourcompany.SliderMonitor
 #endif
 #ifndef  JucePlugin_AAXManufacturerCode
  #define JucePlugin_AAXManufacturerCode    JucePlugin_ManufacturerCode
@@ -402,7 +402,7 @@
  #define JucePlugin_IAASubType             JucePlugin_PluginCode
 #endif
 #ifndef  JucePlugin_IAAName
- #define JucePlugin_IAAName                "yourcompany: SiderMidiMonCombined"
+ #define JucePlugin_IAAName                "yourcompany: SliderMonitor"
 #endif
 #ifndef  JucePlugin_MaxNumInputChannels
  #define JucePlugin_MaxNumInputChannels    2

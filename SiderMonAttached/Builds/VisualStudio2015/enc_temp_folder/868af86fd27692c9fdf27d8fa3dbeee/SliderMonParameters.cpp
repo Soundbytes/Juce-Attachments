@@ -1,4 +1,4 @@
-#include "SliderMidiMonParameters.h"
+#include "SliderMonParameters.h"
 
 static const String floatToTxtNoDecimals(float value)
 {
