@@ -12,11 +12,11 @@ It is also possible now to create the Combobox item list by connecting it to a p
 ## The Demo Projects:
 
 ### AttachmentsDemo:
-The AttachmentsDemo example project illustrates the use of the enhanced ComboboxAttachment and the new LabeAttachment.
+The AttachmentsDemo example project illustrates the use of the enhanced ComboBoxAttachment and the new LabelAttachment.
 
 ### SliderMonitor
-This example features a status bar at the bottom of the UI panel. The status bar shows the value of the most recently moved slider. It can also be used to change the value via text input. the text representation of the status bar is determined by the valueToText function of the parameter that is attached to the slider.
-The example also shows how a complete custom attachment can be implemented outside the framework code. 
+This example features a status bar at the bottom of the UI panel. The status bar shows the value of the most recently moved slider. It can also be used to change the value via text input. the text representation of the status bar is determined by the valueToText function of the parameter that is attached to the selected slider.
+The example shows how a complete custom attachment can be implemented outside the framework code. 
 
 ### Please note:
 The AudioProcessorValueTreeState class design does not allow the addition of user defined Attachments from outside the class definition. Because of that I had to modify two files from the juce framework to make things possible.
