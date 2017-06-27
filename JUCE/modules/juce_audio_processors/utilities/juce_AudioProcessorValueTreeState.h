@@ -171,14 +171,14 @@ public:
 		ComboBoxAttachment(AudioProcessorValueTreeState& stateToControl,
 			const String& parameterID,
 			ComboBox& comboBoxToControl,
-			bool populateCombobox = false);
+			bool populate);
 		~ComboBoxAttachment();
 
 	private:
 		struct Pimpl;
 		friend struct ContainerDeletePolicy<Pimpl>;
 		ScopedPointer<Pimpl> pimpl;
-		JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ComboBoxAttachment)
+		JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ComboBoxAttachment)
 	};
 
 	//==============================================================================
@@ -197,6 +197,9 @@ public:
 			            const String& parameterID,
 			            Label& labelToControl);
 		~LabelAttachment();
+
+		void replaceListener(const String& paramID);
+		void removeListener();
 
 	private:
 		struct Pimpl;
@@ -400,9 +403,96 @@ struct AudioProcessorValueTreeState::Parameter : public AudioProcessorParameterW
 	std::function<String(float)> valueToTextFunction;
 	std::function<float(const String&)> textToValueFunction;
 	NormalisableRange<float> range;
-	float value, defaultValue;
+	float value, defaultValue, previousValue;
 	Atomic<int> needsUpdate;
 	bool listenersNeedCalling;
 
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(Parameter)
+};
+
+//==============================================================================
+struct AttachedControlBase : public AudioProcessorValueTreeState::Listener,
+	public AsyncUpdater
+{
+	AttachedControlBase(AudioProcessorValueTreeState& s, const String& p)
+		: state(s), paramID(p), lastValue(0)
+	{
+		state.addParameterListener(paramID, this);
+	}
+
+	virtual void removeListener()
+	{
+		state.removeParameterListener(paramID, this);
+		paramID = String::empty;
+	}
+
+	virtual void replaceListener(String newParamID)
+	{
+		state.removeParameterListener(paramID, this);
+		paramID = newParamID;
+		state.addParameterListener(paramID, this);
+		sendInitialUpdate();
+	}
+
+	AudioProcessorValueTreeState::Parameter* getParameter() {
+		return dynamic_cast<AudioProcessorValueTreeState::Parameter*>(state.getParameter(paramID));
+	}
+
+	void setNewUnnormalisedValue(float newUnnormalisedValue)
+	{
+		if (AudioProcessorParameter* p = state.getParameter(paramID))
+		{
+			const float newValue = state.getParameterRange(paramID)
+				.convertTo0to1(newUnnormalisedValue);
+
+			if (p->getValue() != newValue)
+				p->setValueNotifyingHost(newValue);
+		}
+	}
+
+	void sendInitialUpdate()
+	{
+		if (float* v = state.getRawParameterValue(paramID))
+			parameterChanged(paramID, *v);
+	}
+
+	void parameterChanged(const String&, float newValue) override
+	{
+		lastValue = newValue;
+
+		if (MessageManager::getInstance()->isThisTheMessageThread())
+		{
+			cancelPendingUpdate();
+			setValue(newValue);
+		}
+		else
+		{
+			triggerAsyncUpdate();
+		}
+	}
+
+	void beginParameterChange()
+	{
+		if (AudioProcessorParameter* p = state.getParameter(paramID))
+			p->beginChangeGesture();
+	}
+
+	void endParameterChange()
+	{
+		if (AudioProcessorParameter* p = state.getParameter(paramID))
+			p->endChangeGesture();
+	}
+
+	void handleAsyncUpdate() override
+	{
+		setValue(lastValue);
+	}
+
+	virtual void setValue(float) = 0;
+
+	AudioProcessorValueTreeState& state;
+	String paramID;
+	float lastValue;
+
+	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(AttachedControlBase)
 };
