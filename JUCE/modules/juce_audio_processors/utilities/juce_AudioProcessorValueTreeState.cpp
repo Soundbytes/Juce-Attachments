@@ -271,7 +271,6 @@ struct AudioProcessorValueTreeState::ComboBoxAttachment::Pimpl  : private Attach
 
     void setValue (float newValue) override
     {
-		Logger::outputDebugString("setValue");
 		const ScopedLock selfCallbackLock (selfCallbackMutex);
         {
             ScopedValueSetter<bool> svs (ignoreCallbacks, true);
@@ -281,7 +280,6 @@ struct AudioProcessorValueTreeState::ComboBoxAttachment::Pimpl  : private Attach
 
 	void comboBoxChanged(ComboBox* comboBox) override
 	{
-		Logger::outputDebugString("comboBoxChanged");
 		if(comboBox != &combo) return;
 		const ScopedLock selfCallbackLock(selfCallbackMutex);
 
@@ -342,10 +340,12 @@ struct AudioProcessorValueTreeState::LabelAttachment::Pimpl : public AttachedCon
 	{
 		if (lbl != &label) return;
 		const ScopedLock selfCallbackLock(selfCallbackMutex);
+
 		if (AudioProcessorParameter* p = getParameter()) {
 			float newNormalizedValue = p->getValueForText(label.getText());
 			if (p->getValue() != newNormalizedValue)
 				p->setValueNotifyingHost(newNormalizedValue);
+			sendInitialUpdate(); // required to make sure the text gets set correctly when te same value gets inserted a second time in the editor.
 		}
 	}
 
