@@ -24,8 +24,8 @@ Before compiling the demo projects you will have to replace the two files juce_A
 with the versions that are supplied with this release.
 
 ## Changes:
--Bugfix: AttachmentsDemo: Combobox now always shows the correct item text 
--Added a SliderMonitor example 
--Bugfix: Combobox is now initialized correctly.
+- Bugfix: AttachmentsDemo: Combobox now always shows the correct item text 
+- Added a SliderMonitor example 
+- Bugfix: Combobox is now initialized correctly.
 
  
