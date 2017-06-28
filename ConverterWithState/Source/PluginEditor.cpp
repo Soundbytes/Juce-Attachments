@@ -33,36 +33,30 @@ ConverterWithStateAudioProcessorEditor::ConverterWithStateAudioProcessorEditor (
     //[Constructor_pre] You can add your own custom stuff here..
     //[/Constructor_pre]
 
-    addAndMakeVisible (tglNoteNumber = new ToggleButton ("noteNumber"));
-    tglNoteNumber->setButtonText (TRANS("note number"));
-    tglNoteNumber->setRadioGroupId (11);
-    tglNoteNumber->addListener (this);
-    tglNoteNumber->setToggleState (true, dontSendNotification);
+    addAndMakeVisible (tglNumbers = new ToggleButton ("numbers"));
+    tglNumbers->setRadioGroupId (11);
+    tglNumbers->addListener (this);
+    tglNumbers->setToggleState (true, dontSendNotification);
 
-    addAndMakeVisible (tglNoteName = new ToggleButton ("noteName"));
-    tglNoteName->setButtonText (TRANS("note name"));
-    tglNoteName->setRadioGroupId (11);
-    tglNoteName->addListener (this);
+    addAndMakeVisible (tglLetters = new ToggleButton ("letters"));
+    tglLetters->setRadioGroupId (11);
+    tglLetters->addListener (this);
 
-    addAndMakeVisible (tglFrequency = new ToggleButton ("frequency"));
-    tglFrequency->setRadioGroupId (11);
-    tglFrequency->addListener (this);
-
-    addAndMakeVisible (lblPitch = new Label ("pitch",
-                                             TRANS("pitch")));
-    lblPitch->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
-    lblPitch->setJustificationType (Justification::centredLeft);
-    lblPitch->setEditable (true, true, false);
-    lblPitch->setColour (TextEditor::textColourId, Colours::black);
-    lblPitch->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
-    lblPitch->addListener (this);
+    addAndMakeVisible (lblValue = new Label ("value",
+                                             TRANS("value")));
+    lblValue->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    lblValue->setJustificationType (Justification::centredLeft);
+    lblValue->setEditable (true, true, false);
+    lblValue->setColour (TextEditor::textColourId, Colours::black);
+    lblValue->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+    lblValue->addListener (this);
 
 
     //[UserPreSize]
-	attLblPitch = new LabelAttachment(params, "pitch", *lblPitch);
+	attLblPitch = new LabelAttachment(params, "value", *lblValue);
     //[/UserPreSize]
 
-    setSize (600, 400);
+    setSize (128, 128);
 
 
     //[Constructor] You can add your own custom stuff here..
@@ -75,10 +69,9 @@ ConverterWithStateAudioProcessorEditor::~ConverterWithStateAudioProcessorEditor(
 	attLblPitch = nullptr;
     //[/Destructor_pre]
 
-    tglNoteNumber = nullptr;
-    tglNoteName = nullptr;
-    tglFrequency = nullptr;
-    lblPitch = nullptr;
+    tglNumbers = nullptr;
+    tglLetters = nullptr;
+    lblValue = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -102,10 +95,9 @@ void ConverterWithStateAudioProcessorEditor::resized()
     //[UserPreResize] Add your own custom resize code here..
     //[/UserPreResize]
 
-    tglNoteNumber->setBounds (16, 16, 150, 24);
-    tglNoteName->setBounds (16, 40, 150, 24);
-    tglFrequency->setBounds (16, 64, 150, 24);
-    lblPitch->setBounds (184, 64, 150, 24);
+    tglNumbers->setBounds (16, 16, 96, 24);
+    tglLetters->setBounds (16, 40, 96, 24);
+    lblValue->setBounds (16, 88, 96, 24);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -113,25 +105,24 @@ void ConverterWithStateAudioProcessorEditor::resized()
 void ConverterWithStateAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked)
 {
     //[UserbuttonClicked_Pre]
+	if (buttonThatWasClicked->getToggleState() == false) return;
     //[/UserbuttonClicked_Pre]
 
-    if (buttonThatWasClicked == tglNoteNumber)
+    if (buttonThatWasClicked == tglNumbers)
     {
-        //[UserButtonCode_tglNoteNumber] -- add your button handler code here..
-        //[/UserButtonCode_tglNoteNumber]
+        //[UserButtonCode_tglNumbers] -- add your button handler code here..
+		ConverterWithStateParameters::textConverter.setState("numbers");
+        //[/UserButtonCode_tglNumbers]
     }
-    else if (buttonThatWasClicked == tglNoteName)
+    else if (buttonThatWasClicked == tglLetters)
     {
-        //[UserButtonCode_tglNoteName] -- add your button handler code here..
-        //[/UserButtonCode_tglNoteName]
-    }
-    else if (buttonThatWasClicked == tglFrequency)
-    {
-        //[UserButtonCode_tglFrequency] -- add your button handler code here..
-        //[/UserButtonCode_tglFrequency]
+        //[UserButtonCode_tglLetters] -- add your button handler code here..
+		ConverterWithStateParameters::textConverter.setState("letters");
+        //[/UserButtonCode_tglLetters]
     }
 
     //[UserbuttonClicked_Post]
+	attLblPitch->sendInitialUpdate();
     //[/UserbuttonClicked_Post]
 }
 
@@ -140,10 +131,10 @@ void ConverterWithStateAudioProcessorEditor::labelTextChanged (Label* labelThatH
     //[UserlabelTextChanged_Pre]
     //[/UserlabelTextChanged_Pre]
 
-    if (labelThatHasChanged == lblPitch)
+    if (labelThatHasChanged == lblValue)
     {
-        //[UserLabelCode_lblPitch] -- add your label text handling code here..
-        //[/UserLabelCode_lblPitch]
+        //[UserLabelCode_lblValue] -- add your label text handling code here..
+        //[/UserLabelCode_lblValue]
     }
 
     //[UserlabelTextChanged_Post]
@@ -170,20 +161,17 @@ BEGIN_JUCER_METADATA
                  constructorParams="ConverterWithStateAudioProcessor&amp; proc"
                  variableInitialisers="AudioProcessorEditor (&amp;proc), proc(proc), params(proc.getParams())"
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
-                 fixedSize="0" initialWidth="600" initialHeight="400">
+                 fixedSize="0" initialWidth="128" initialHeight="128">
   <BACKGROUND backgroundColour="ff323e44"/>
-  <TOGGLEBUTTON name="noteNumber" id="bcf4ee54fb05521" memberName="tglNoteNumber"
-                virtualName="" explicitFocusOrder="0" pos="16 16 150 24" buttonText="note number"
+  <TOGGLEBUTTON name="numbers" id="bcf4ee54fb05521" memberName="tglNumbers" virtualName=""
+                explicitFocusOrder="0" pos="16 16 96 24" buttonText="numbers"
                 connectedEdges="0" needsCallback="1" radioGroupId="11" state="1"/>
-  <TOGGLEBUTTON name="noteName" id="2f9b3e64e90a0a65" memberName="tglNoteName"
-                virtualName="" explicitFocusOrder="0" pos="16 40 150 24" buttonText="note name"
+  <TOGGLEBUTTON name="letters" id="2f9b3e64e90a0a65" memberName="tglLetters"
+                virtualName="" explicitFocusOrder="0" pos="16 40 96 24" buttonText="letters"
                 connectedEdges="0" needsCallback="1" radioGroupId="11" state="0"/>
-  <TOGGLEBUTTON name="frequency" id="310c6fc3e67d1afe" memberName="tglFrequency"
-                virtualName="" explicitFocusOrder="0" pos="16 64 150 24" buttonText="frequency"
-                connectedEdges="0" needsCallback="1" radioGroupId="11" state="0"/>
-  <LABEL name="pitch" id="b62505c47b1d28fd" memberName="lblPitch" virtualName=""
-         explicitFocusOrder="0" pos="184 64 150 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="pitch" editableSingleClick="1" editableDoubleClick="1"
+  <LABEL name="value" id="b62505c47b1d28fd" memberName="lblValue" virtualName=""
+         explicitFocusOrder="0" pos="16 88 96 24" edTextCol="ff000000"
+         edBkgCol="0" labelText="value" editableSingleClick="1" editableDoubleClick="1"
          focusDiscardsChanges="0" fontname="Default font" fontsize="15"
          kerning="0" bold="0" italic="0" justification="33"/>
 </JUCER_COMPONENT>

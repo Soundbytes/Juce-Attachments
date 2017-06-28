@@ -10,21 +10,27 @@
 
 #pragma once
 
-class SbPitchFilter 
+class SbTextConverter 
 {
 public:
-	explicit SbPitchFilter(const String& state) : scale(10.f) { setState(state); }
+	explicit SbTextConverter(const String& state) : state("numbers") { setState(state); }
+	/*&((char)(value - 97))*/
 
 	const String f2t(float value) {
-		return String(value * scale, 0) + "ixi";
+		return state == "numbers" ? 
+			String(value, 0) : 
+			String::charToString(char(value + 96));
 	}
 
 	const float t2f(const String& text) {
-		return text.getFloatValue() / scale;
+		return state == "numbers" ?
+			text.getFloatValue() :
+			text.getLastCharacter() - 96;
 	}
 
-	void setState(String state) {};
+	void setState(String newState) { state = newState; };
 private:
-	float scale;
+	String state;
 };
+
 

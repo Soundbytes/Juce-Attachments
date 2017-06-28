@@ -65,10 +65,9 @@ private:
     //[/UserVariables]
 
     //==============================================================================
-    ScopedPointer<ToggleButton> tglNoteNumber;
-    ScopedPointer<ToggleButton> tglNoteName;
-    ScopedPointer<ToggleButton> tglFrequency;
-    ScopedPointer<Label> lblPitch;
+    ScopedPointer<ToggleButton> tglNumbers;
+    ScopedPointer<ToggleButton> tglLetters;
+    ScopedPointer<Label> lblValue;
 
 
     //==============================================================================

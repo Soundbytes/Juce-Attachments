@@ -16,5 +16,8 @@ class ConverterWithStateParameters : public AudioProcessorValueTreeState
 {
 public:
 	ConverterWithStateParameters(AudioProcessor& p);
+	static SbTextConverter textConverter;
 };
+
+
 
