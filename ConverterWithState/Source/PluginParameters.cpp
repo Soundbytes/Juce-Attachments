@@ -10,16 +10,14 @@
 
 #include "PluginParameters.h"
 
-SbTextConverter ConverterWithStateParameters::textConverter("numbers");
-
-static auto f2t = [](float val) {return ConverterWithStateParameters::textConverter.f2t(val); };
-static auto t2f = [](const String& text) {return ConverterWithStateParameters::textConverter.t2f(text); };
-
 
 
 ConverterWithStateParameters::ConverterWithStateParameters(AudioProcessor& p) 
-	: AudioProcessorValueTreeState(p, nullptr)
+	: AudioProcessorValueTreeState(p, nullptr), textConverter("numbers")
 {
+	f2t = [this](float val) {return textConverter.f2t(val); };
+	t2f = [this](const String& text) {return textConverter.t2f(text); };
+
 	createAndAddParameter("value", "value", "value",
 		NormalisableRange<float>(1.f, 26.f, 1.f),
 		1.f, // positive

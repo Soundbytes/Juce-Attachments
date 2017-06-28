@@ -111,13 +111,13 @@ void ConverterWithStateAudioProcessorEditor::buttonClicked (Button* buttonThatWa
     if (buttonThatWasClicked == tglNumbers)
     {
         //[UserButtonCode_tglNumbers] -- add your button handler code here..
-		ConverterWithStateParameters::textConverter.setState("numbers");
+		params.textConverter.setState("numbers");
         //[/UserButtonCode_tglNumbers]
     }
     else if (buttonThatWasClicked == tglLetters)
     {
         //[UserButtonCode_tglLetters] -- add your button handler code here..
-		ConverterWithStateParameters::textConverter.setState("letters");
+		params.textConverter.setState("letters");
         //[/UserButtonCode_tglLetters]
     }
 

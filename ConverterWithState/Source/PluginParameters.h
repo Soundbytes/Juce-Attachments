@@ -16,8 +16,9 @@ class ConverterWithStateParameters : public AudioProcessorValueTreeState
 {
 public:
 	ConverterWithStateParameters(AudioProcessor& p);
-	static SbTextConverter textConverter;
+	SbTextConverter textConverter;
+
+	std::function<String(float)> f2t;
+	std::function<float(const String&)> t2f;
+
 };
-
-
-
