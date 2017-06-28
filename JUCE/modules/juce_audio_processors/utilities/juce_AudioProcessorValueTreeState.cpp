@@ -388,8 +388,8 @@ AudioProcessorValueTreeState::LabelAttachment::LabelAttachment(AudioProcessorVal
 AudioProcessorValueTreeState::LabelAttachment::~LabelAttachment() {}
 
 void AudioProcessorValueTreeState::LabelAttachment::replaceListener(const String& paramID) { pimpl->replaceListener(paramID); }
-
 void AudioProcessorValueTreeState::LabelAttachment::removeListener() { pimpl->removeListener(); }
+void AudioProcessorValueTreeState::LabelAttachment::sendInitialUpdate() { pimpl->sendInitialUpdate(); }
 
 //==============================================================================
 struct AudioProcessorValueTreeState::ButtonAttachment::Pimpl : private AttachedControlBase,

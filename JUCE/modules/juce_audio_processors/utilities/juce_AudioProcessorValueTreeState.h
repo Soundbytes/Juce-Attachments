@@ -200,7 +200,7 @@ public:
 
 		void replaceListener(const String& paramID);
 		void removeListener();
-
+		void sendInitialUpdate();
 	private:
 		struct Pimpl;
 		friend struct ContainerDeletePolicy<Pimpl>;
