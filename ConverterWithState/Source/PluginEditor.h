@@ -37,7 +37,8 @@ typedef AudioProcessorValueTreeState::LabelAttachment LabelAttachment;
                                                                     //[/Comments]
 */
 class ConverterWithStateAudioProcessorEditor  : public AudioProcessorEditor,
-                                                public ButtonListener
+                                                public ButtonListener,
+                                                public LabelListener
 {
 public:
     //==============================================================================
@@ -51,6 +52,7 @@ public:
     void paint (Graphics& g) override;
     void resized() override;
     void buttonClicked (Button* buttonThatWasClicked) override;
+    void labelTextChanged (Label* labelThatHasChanged) override;
 
 
 
@@ -59,7 +61,7 @@ private:
 	ConverterWithStateAudioProcessor& proc;
 	ConverterWithStateParameters & params;
 
-    ScopedPointer<LabelAttachment> attLblPitch;	
+    ScopedPointer<LabelAttachment> attLblPitch;
     //[/UserVariables]
 
     //==============================================================================

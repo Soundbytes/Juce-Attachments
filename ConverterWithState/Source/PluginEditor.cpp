@@ -52,9 +52,10 @@ ConverterWithStateAudioProcessorEditor::ConverterWithStateAudioProcessorEditor (
                                              TRANS("pitch")));
     lblPitch->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
     lblPitch->setJustificationType (Justification::centredLeft);
-    lblPitch->setEditable (false, false, false);
+    lblPitch->setEditable (true, true, false);
     lblPitch->setColour (TextEditor::textColourId, Colours::black);
     lblPitch->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+    lblPitch->addListener (this);
 
 
     //[UserPreSize]
@@ -134,6 +135,21 @@ void ConverterWithStateAudioProcessorEditor::buttonClicked (Button* buttonThatWa
     //[/UserbuttonClicked_Post]
 }
 
+void ConverterWithStateAudioProcessorEditor::labelTextChanged (Label* labelThatHasChanged)
+{
+    //[UserlabelTextChanged_Pre]
+    //[/UserlabelTextChanged_Pre]
+
+    if (labelThatHasChanged == lblPitch)
+    {
+        //[UserLabelCode_lblPitch] -- add your label text handling code here..
+        //[/UserLabelCode_lblPitch]
+    }
+
+    //[UserlabelTextChanged_Post]
+    //[/UserlabelTextChanged_Post]
+}
+
 
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
@@ -167,7 +183,7 @@ BEGIN_JUCER_METADATA
                 connectedEdges="0" needsCallback="1" radioGroupId="11" state="0"/>
   <LABEL name="pitch" id="b62505c47b1d28fd" memberName="lblPitch" virtualName=""
          explicitFocusOrder="0" pos="184 64 150 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="pitch" editableSingleClick="0" editableDoubleClick="0"
+         edBkgCol="0" labelText="pitch" editableSingleClick="1" editableDoubleClick="1"
          focusDiscardsChanges="0" fontname="Default font" fontsize="15"
          kerning="0" bold="0" italic="0" justification="33"/>
 </JUCER_COMPONENT>
