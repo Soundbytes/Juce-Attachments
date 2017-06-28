@@ -10,24 +10,20 @@
 
 #include "PluginParameters.h"
 
+static SbPitchFilter pitchFilter("noteName");
+static auto f2t = [](float val) {return pitchFilter.f2t(val); };
+static auto t2f = [](const String& text) {return pitchFilter.t2f(text); };
+
+
 
 ConverterWithStateParameters::ConverterWithStateParameters(AudioProcessor& p) : AudioProcessorValueTreeState(p, nullptr)
 {
-
-	createAndAddParameter("dummy", "dummy", "dummy",
-		NormalisableRange<float>(-1.f, 1.f, 2.f),
+	createAndAddParameter("pitch", "pitch", "pitch",
+		NormalisableRange<float>(0.f, 127.f, 1.f),
 		1.f, // positive
-		nullptr,
-		nullptr
+		f2t,
+		t2f
 	);
-
-	createAndAddParameter("default", "default", "default",
-		NormalisableRange<float>(0.f, 1.f, 1.f),
-		1.f, // 
-		nullptr,
-		nullptr
-	);
-
 
 	state = ValueTree(Identifier("CWSParams"));
 }

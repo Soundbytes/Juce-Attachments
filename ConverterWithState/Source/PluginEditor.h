@@ -22,6 +22,8 @@
 //[Headers]     -- You can add your own extra header files here --
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "PluginProcessor.h"
+
+typedef AudioProcessorValueTreeState::LabelAttachment LabelAttachment;
 //[/Headers]
 
 
@@ -34,7 +36,8 @@
     Describe your class and how it works here!
                                                                     //[/Comments]
 */
-class ConverterWithStateAudioProcessorEditor  : public AudioProcessorEditor
+class ConverterWithStateAudioProcessorEditor  : public AudioProcessorEditor,
+                                                public ButtonListener
 {
 public:
     //==============================================================================
@@ -47,6 +50,7 @@ public:
 
     void paint (Graphics& g) override;
     void resized() override;
+    void buttonClicked (Button* buttonThatWasClicked) override;
 
 
 
@@ -54,9 +58,15 @@ private:
     //[UserVariables]   -- You can add your own custom variables in this section.
 	ConverterWithStateAudioProcessor& proc;
 	ConverterWithStateParameters & params;
+
+    ScopedPointer<LabelAttachment> attLblPitch;	
     //[/UserVariables]
 
     //==============================================================================
+    ScopedPointer<ToggleButton> tglNoteNumber;
+    ScopedPointer<ToggleButton> tglNoteName;
+    ScopedPointer<ToggleButton> tglFrequency;
+    ScopedPointer<Label> lblPitch;
 
 
     //==============================================================================

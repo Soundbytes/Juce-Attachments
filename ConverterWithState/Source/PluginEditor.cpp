@@ -33,8 +33,32 @@ ConverterWithStateAudioProcessorEditor::ConverterWithStateAudioProcessorEditor (
     //[Constructor_pre] You can add your own custom stuff here..
     //[/Constructor_pre]
 
+    addAndMakeVisible (tglNoteNumber = new ToggleButton ("noteNumber"));
+    tglNoteNumber->setButtonText (TRANS("note number"));
+    tglNoteNumber->setRadioGroupId (11);
+    tglNoteNumber->addListener (this);
+    tglNoteNumber->setToggleState (true, dontSendNotification);
+
+    addAndMakeVisible (tglNoteName = new ToggleButton ("noteName"));
+    tglNoteName->setButtonText (TRANS("note name"));
+    tglNoteName->setRadioGroupId (11);
+    tglNoteName->addListener (this);
+
+    addAndMakeVisible (tglFrequency = new ToggleButton ("frequency"));
+    tglFrequency->setRadioGroupId (11);
+    tglFrequency->addListener (this);
+
+    addAndMakeVisible (lblPitch = new Label ("pitch",
+                                             TRANS("pitch")));
+    lblPitch->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    lblPitch->setJustificationType (Justification::centredLeft);
+    lblPitch->setEditable (false, false, false);
+    lblPitch->setColour (TextEditor::textColourId, Colours::black);
+    lblPitch->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
 
     //[UserPreSize]
+	attLblPitch = new LabelAttachment(params, "pitch", *lblPitch);
     //[/UserPreSize]
 
     setSize (600, 400);
@@ -47,8 +71,13 @@ ConverterWithStateAudioProcessorEditor::ConverterWithStateAudioProcessorEditor (
 ConverterWithStateAudioProcessorEditor::~ConverterWithStateAudioProcessorEditor()
 {
     //[Destructor_pre]. You can add your own custom destruction code here..
+	attLblPitch = nullptr;
     //[/Destructor_pre]
 
+    tglNoteNumber = nullptr;
+    tglNoteName = nullptr;
+    tglFrequency = nullptr;
+    lblPitch = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -72,8 +101,37 @@ void ConverterWithStateAudioProcessorEditor::resized()
     //[UserPreResize] Add your own custom resize code here..
     //[/UserPreResize]
 
+    tglNoteNumber->setBounds (16, 16, 150, 24);
+    tglNoteName->setBounds (16, 40, 150, 24);
+    tglFrequency->setBounds (16, 64, 150, 24);
+    lblPitch->setBounds (184, 64, 150, 24);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
+}
+
+void ConverterWithStateAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked)
+{
+    //[UserbuttonClicked_Pre]
+    //[/UserbuttonClicked_Pre]
+
+    if (buttonThatWasClicked == tglNoteNumber)
+    {
+        //[UserButtonCode_tglNoteNumber] -- add your button handler code here..
+        //[/UserButtonCode_tglNoteNumber]
+    }
+    else if (buttonThatWasClicked == tglNoteName)
+    {
+        //[UserButtonCode_tglNoteName] -- add your button handler code here..
+        //[/UserButtonCode_tglNoteName]
+    }
+    else if (buttonThatWasClicked == tglFrequency)
+    {
+        //[UserButtonCode_tglFrequency] -- add your button handler code here..
+        //[/UserButtonCode_tglFrequency]
+    }
+
+    //[UserbuttonClicked_Post]
+    //[/UserbuttonClicked_Post]
 }
 
 
@@ -98,6 +156,20 @@ BEGIN_JUCER_METADATA
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
                  fixedSize="0" initialWidth="600" initialHeight="400">
   <BACKGROUND backgroundColour="ff323e44"/>
+  <TOGGLEBUTTON name="noteNumber" id="bcf4ee54fb05521" memberName="tglNoteNumber"
+                virtualName="" explicitFocusOrder="0" pos="16 16 150 24" buttonText="note number"
+                connectedEdges="0" needsCallback="1" radioGroupId="11" state="1"/>
+  <TOGGLEBUTTON name="noteName" id="2f9b3e64e90a0a65" memberName="tglNoteName"
+                virtualName="" explicitFocusOrder="0" pos="16 40 150 24" buttonText="note name"
+                connectedEdges="0" needsCallback="1" radioGroupId="11" state="0"/>
+  <TOGGLEBUTTON name="frequency" id="310c6fc3e67d1afe" memberName="tglFrequency"
+                virtualName="" explicitFocusOrder="0" pos="16 64 150 24" buttonText="frequency"
+                connectedEdges="0" needsCallback="1" radioGroupId="11" state="0"/>
+  <LABEL name="pitch" id="b62505c47b1d28fd" memberName="lblPitch" virtualName=""
+         explicitFocusOrder="0" pos="184 64 150 24" edTextCol="ff000000"
+         edBkgCol="0" labelText="pitch" editableSingleClick="0" editableDoubleClick="0"
+         focusDiscardsChanges="0" fontname="Default font" fontsize="15"
+         kerning="0" bold="0" italic="0" justification="33"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA
