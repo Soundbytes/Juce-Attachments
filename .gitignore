@@ -240,4 +240,8 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+
 /Template
+
+# god knows what this is
+enc_temp_folder/
