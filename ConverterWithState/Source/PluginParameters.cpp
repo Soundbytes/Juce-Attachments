@@ -22,6 +22,6 @@ ConverterWithStateParameters::ConverterWithStateParameters(AudioProcessor& p)
 		[this](const String& text) {return textConverter.t2f(text); }
 	);
 
-	state = ValueTree(Identifier("CWSParams"));
+	stateInit();
 }
 

@@ -15,7 +15,4 @@ class AttachmentsDemoParameters : public AudioProcessorValueTreeState
 {
 public:
 	AttachmentsDemoParameters(AudioProcessor& p);
-
-private:
-
 };

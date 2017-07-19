@@ -57,5 +57,5 @@ SliderMidiMonParameters::SliderMidiMonParameters(AudioProcessor& p) : AudioProce
 		floatToTxtNoDecimals,
 		nullptr);
 
-	state = ValueTree(Identifier("SMMParams"));
+	stateInit();
 }

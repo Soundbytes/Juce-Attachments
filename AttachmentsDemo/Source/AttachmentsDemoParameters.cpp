@@ -91,6 +91,6 @@ AttachmentsDemoParameters::AttachmentsDemoParameters(AudioProcessor& p) : AudioP
 		CcName2Number
 	);
 
-	state = ValueTree(Identifier("ADParams"));
+	stateInit();
 }
 
