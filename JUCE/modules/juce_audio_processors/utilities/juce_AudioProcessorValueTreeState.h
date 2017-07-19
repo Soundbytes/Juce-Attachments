@@ -26,6 +26,10 @@
 
 #pragma once
 
+
+const static String paTypePreset = "Preset";
+const static String paTypeSettings = "Settings";
+
 /**
     This class contains a ValueTree which is used to manage an AudioProcessor's entire state.
 
@@ -60,6 +64,12 @@ public:
     /** Destructor. */
     ~AudioProcessorValueTreeState();
 
+	/** assignment operator 
+		I have no Idea why I had to add this 
+		but without it the tutorial14 example won't compile
+	*/
+	AudioProcessorValueTreeState& operator=(AudioProcessorValueTreeState &s) { return s; }
+
     /** Creates and returns a new parameter object for controlling a parameter
         with the given ID.
 
@@ -83,10 +93,85 @@ public:
                                                           NormalisableRange<float> valueRange,
                                                           float defaultValue,
                                                           std::function<String (float)> valueToTextFunction,
-                                                          std::function<float (const String&)> textToValueFunction);
+                                                          std::function<float (const String&)> textToValueFunction,
+                                                          bool canAutomate = true,
+	                                                      const String& pType = paTypePreset);
 
-    /** Returns a parameter by its ID string. */
-    AudioProcessorParameterWithID* getParameter (StringRef parameterID) const noexcept;
+	AudioProcessorParameterWithID* createAndAddParameter(const String& paramID, NormalisableRange<float>& r, float defaultVal,
+		std::function<String(float)> f2t = nullptr,
+		std::function<float(const String&)> t2f = nullptr, bool canAutomate = true, const String& paramType = paTypePreset)
+	{
+		return createAndAddParameter(paramID, paramID, paramID, r, defaultVal, f2t, t2f, canAutomate, paramType);
+	}
+
+
+	//==============================================================================
+
+	virtual void stateInit() {
+		state = ValueTree(Identifier(processor.getName()));
+		preset = state.getOrCreateChildWithName(presetID, undoManager);
+		settings = state.getOrCreateChildWithName(settingsID, undoManager);
+
+		settingsFile = getSettingsFolder().getChildFile(processor.getName() + "Settings.dat");
+		getSettingsFolder().createDirectory();
+
+		loadSettings();
+	}
+
+	void prepareToPlay();
+
+	virtual File getSettingsFolder() {
+		return File::getSpecialLocation(File::userApplicationDataDirectory).
+			getChildFile("Soundbytes").
+			getChildFile(processor.getName());
+	}
+
+
+
+	virtual void saveSettings() {
+		if (settings.getNumChildren() == 0) return;
+
+		MemoryBlock data;
+		getBranchState(settings, data);
+
+		settingsFile.create();
+		settingsFile.replaceWithData(data.getData(), data.getSize());
+	}
+
+	virtual void loadSettings() {
+		if (!settingsFile.existsAsFile()) return;
+
+		MemoryBlock data;
+		if (!settingsFile.loadFileAsData(data)) return;
+		setBranchState(settings, data.getData(), data.getSize());
+	}
+
+	virtual void getPresetState(MemoryBlock& destData) {
+		getBranchState(preset, destData);
+	}
+
+	virtual void setPresetState(const void* data, int sizeInBytes) {
+		setBranchState(preset, data, sizeInBytes);
+	}
+private:
+	void getBranchState(ValueTree& branch, MemoryBlock& destData){
+		ScopedPointer<XmlElement> xml(branch.createXml());
+		processor.copyXmlToBinary(*xml, destData);
+	}
+
+	void setBranchState(ValueTree& branch, const void* data, int sizeInBytes){
+		ScopedPointer<XmlElement> xmlState(processor.getXmlFromBinary(data, sizeInBytes));
+		if (xmlState != nullptr && xmlState->hasTagName(branch == preset ? presetID : settingsID)) {
+			state.removeChild(branch, nullptr);
+			branch = ValueTree::fromXml(*xmlState);
+			state.addChild(branch, -1, nullptr);
+		}
+	}
+public:
+	struct Parameter; // declared here to allow public access
+	
+	/** Returns a parameter by its ID string. */
+    Parameter* getParameter (StringRef parameterID) const noexcept;
 
     /** Returns a pointer to a floating point representation of a particular
         parameter which a realtime process can read to find out its current value.
@@ -128,6 +213,9 @@ public:
         parameter objects that are created by createAndAddParameter().
     */
     ValueTree state;
+
+	ValueTree preset;
+	ValueTree settings;
 
     /** Provides access to the undo manager that this object is using. */
     UndoManager* const undoManager;
@@ -201,6 +289,7 @@ public:
 		void replaceListener(const String& paramID);
 		void removeListener();
 		void sendInitialUpdate();
+		Parameter* getParameter();
 	private:
 		struct Pimpl;
 		friend struct ContainerDeletePolicy<Pimpl>;
@@ -256,12 +345,17 @@ public:
 //		JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ButtonAttachment)
 //	};
 
-    struct Parameter; // declared here to allow public access
+	static const String& getPresetID(AudioProcessorValueTreeState* vts) { return vts->presetID; }
+	const String presetID;
+	const String settingsID;
+
 private:
     //==============================================================================
     friend struct Parameter;
+	std::vector<String>paramIDs;
+	File settingsFile;
 
-    ValueTree getOrCreateChildValueTree (const String&);
+    ValueTree getOrCreateChildValueTree (const String&, const String&);
     void timerCallback() override;
 
     void valueTreePropertyChanged (ValueTree&, const Identifier&) override;
@@ -285,11 +379,11 @@ struct AudioProcessorValueTreeState::Parameter : public AudioProcessorParameterW
 		const String& parameterID, const String& paramName, const String& labelText,
 		NormalisableRange<float> r, float defaultVal,
 		std::function<String(float)> valueToText,
-		std::function<float(const String&)> textToValue)
-		: AudioProcessorParameterWithID(parameterID, paramName, labelText),
+		std::function<float(const String&)> textToValue, bool canAutomate/* = true*/, const String& paramType/* = paTypePreset*/)
+		: AudioProcessorParameterWithID(parameterID, paramName, labelText, canAutomate),
 		owner(s), valueToTextFunction(valueToText), textToValueFunction(textToValue),
 		range(r), value(defaultVal), defaultValue(defaultVal),
-		listenersNeedCalling(true)
+		listenersNeedCalling(true), paramType(paramType)
 	{
 		state.addListener(this);
 		needsUpdate.set(1);
@@ -354,6 +448,11 @@ struct AudioProcessorValueTreeState::Parameter : public AudioProcessorParameterW
 		}
 	}
 
+	float getUnnormalisedValue()
+	{
+		return value;
+	}
+
 	void updateFromValueTree()
 	{
 		setUnnormalisedValue(state.getProperty(owner.valuePropertyID, defaultValue));
@@ -375,6 +474,7 @@ struct AudioProcessorValueTreeState::Parameter : public AudioProcessorParameterW
 	void valueTreeChildRemoved(ValueTree&, ValueTree&, int) override {}
 	void valueTreeChildOrderChanged(ValueTree&, int, int) override {}
 	void valueTreeParentChanged(ValueTree&) override {}
+
 
 	static Parameter* getParameterForID(AudioProcessor& processor, StringRef paramID) noexcept
 	{
@@ -406,6 +506,7 @@ struct AudioProcessorValueTreeState::Parameter : public AudioProcessorParameterW
 	float value, defaultValue, previousValue;
 	Atomic<int> needsUpdate;
 	bool listenersNeedCalling;
+	const String paramType;
 
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(Parameter)
 };
@@ -435,7 +536,7 @@ struct AttachedControlBase : public AudioProcessorValueTreeState::Listener,
 	}
 
 	AudioProcessorValueTreeState::Parameter* getParameter() {
-		return dynamic_cast<AudioProcessorValueTreeState::Parameter*>(state.getParameter(paramID));
+		return state.getParameter(paramID);
 	}
 
 	void setNewUnnormalisedValue(float newUnnormalisedValue)
@@ -449,6 +550,17 @@ struct AttachedControlBase : public AudioProcessorValueTreeState::Listener,
 				p->setValueNotifyingHost(newValue);
 		}
 	}
+
+	float getUnnormalisedValue()
+	{
+		if (AudioProcessorValueTreeState::Parameter* p = state.getParameter(paramID))		{
+			return p->getUnnormalisedValue();
+		}
+		// Parameter with given paramID does not exist!
+		jassert(false);
+		return 0;
+	}
+
 
 	void sendInitialUpdate()
 	{
