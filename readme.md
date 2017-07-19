@@ -29,9 +29,13 @@ In a real world application the mechanism might be used to offer:
 - different amplitude display options (percent, decibel)
 
 ### Please note:
-The AudioProcessorValueTreeState class design does not allow the addition of user defined Attachments from outside the class definition. Because of that I had to modify two files from the juce framework to make things possible.
-Before compiling the demo projects you will have to replace the files juce_AudioProcessorParameters.cpp, juce_AudioProcessorParameterWithID.h, juce_AudioProcessorValueTreeState.cpp and juce_AudioProcessorValueTreeState.h
-with the versions that are supplied with this release.
+The original AudioProcessorValueTreeState class design does not allow the addition of user defined Attachments from outside the class definition. Because of that I had to modify some files from the juce framework to make things possible.
+Before compiling the demo projects you will have to replace these files with the versions that are supplied with this release:
+ - juce_AudioProcessorParameters.cpp
+ - juce_AudioProcessorParameterWithID.h
+ - juce_AudioProcessorValueTreeState.cpp
+ - juce_AudioProcessorValueTreeState.h
+
 
 ## Changes:
 - Bugfix: AttachmentsDemo: Combobox now always shows the correct item text 
