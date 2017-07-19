@@ -1827,8 +1827,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\SbRadioGroup.h"/>
-    <ClInclude Include="..\..\Source\ColorSelector.h"/>
-    <ClInclude Include="..\..\Source\SbTextConverters.h"/>
     <ClInclude Include="..\..\Source\PluginParameters.h"/>
     <ClInclude Include="..\..\Source\PluginEditor.h"/>
     <ClInclude Include="..\..\Source\PluginProcessor.h"/>

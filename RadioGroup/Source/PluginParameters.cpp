@@ -31,5 +31,6 @@ RadioGroupParameters::RadioGroupParameters(AudioProcessor& p) : AudioProcessorVa
 		f2color,
 		color2f
 	);
+
 	stateInit();
 }

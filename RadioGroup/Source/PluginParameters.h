@@ -10,7 +10,6 @@
 
 #pragma once
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "SbTextConverters.h"
 
 class RadioGroupParameters : public AudioProcessorValueTreeState
 {

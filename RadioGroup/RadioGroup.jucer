@@ -13,9 +13,6 @@
   <MAINGROUP id="IcwYZE" name="RadioGroup">
     <GROUP id="{042014CF-F996-D82C-083C-9D807B3CBE2F}" name="Source">
       <FILE id="AdUbdK" name="SbRadioGroup.h" compile="0" resource="0" file="Source/SbRadioGroup.h"/>
-      <FILE id="rayq5N" name="ColorSelector.h" compile="0" resource="0" file="Source/ColorSelector.h"/>
-      <FILE id="dzpCZn" name="SbTextConverters.h" compile="0" resource="0"
-            file="Source/SbTextConverters.h"/>
       <FILE id="MP9zlH" name="PluginParameters.cpp" compile="1" resource="0"
             file="Source/PluginParameters.cpp"/>
       <FILE id="gQQiZg" name="PluginParameters.h" compile="0" resource="0"
