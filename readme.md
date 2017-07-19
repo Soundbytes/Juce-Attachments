@@ -11,6 +11,9 @@ It is also possible now to create the Combobox item list by connecting it to a p
 
 ## The Demo Projects:
 
+### RadioGroup
+the RadioGroup example features a component that is populated with a group of radio buttons. The Buttons are created by a SbRadioGroupAttachment upon connection to the component.
+
 ### AttachmentsDemo:
 The AttachmentsDemo example project illustrates the use of the enhanced ComboBoxAttachment and the new LabelAttachment.
 
@@ -35,5 +38,8 @@ with the versions that are supplied with this release.
 - Added a SliderMonitor example 
 - Bugfix: Combobox is now initialized correctly.
 - added a stateful converter example.
+- added a radio button group example
+- modified AudioProcessorValueTreeState to allow for separate handling of user settings
+- added a canAutomate property to AudioProcessorParameterWithID
 
  
