@@ -1,12 +1,13 @@
 # Juce Attachments
 
-This proposal features two Attachments for the juce::AudioProcessorValueTreeState class
-- LabelAttachment (new)
+This proposal features three Attachments for the juce::AudioProcessorValueTreeState class
+- SbRadioGroupAttachment (to be used with the custom SbRadioGroup component) 
+- LabelAttachment
 - ComboBoxAttachment (based on the existing version)
 
-Both attachents make use of the user defined valueToTextFunction and textToValueFunction when set as the last 2 parameters from the createAndAddParameter function.
+The attachents make use of the user defined valueToTextFunction and textToValueFunction when set as the last 2 parameters from the createAndAddParameter function.
 
-These functions are used to create an updated text entry from a new parameter value and to evaluate text entries in the label or comboBox editor.
+These functions are used to create an updated text entry from a new parameter value and to evaluate text entries in the label or comboBox editor. The SbRadioGroupAttachment will populate the RadioGroup with ToggleButtons based on the range property of the attached parameter.
 It is also possible now to create the Combobox item list by connecting it to a parameter through the Attachment.
 
 ## The Demo Projects:
