@@ -28,7 +28,7 @@
 class ColorRect : public Component, public AudioProcessorValueTreeState::Listener
 {
 public:
-	ColorRect(AudioProcessorValueTreeState& params) { 
+	ColorRect(AudioProcessorValueTreeState& params) {
 		params.addParameterListener("color", this);
 		if (float* val = params.getRawParameterValue("color"))
 			setColor(*val);
@@ -74,7 +74,7 @@ public:
     //[UserMethods]     -- You can add your own custom methods in this section.
     //[/UserMethods]
 
-	void paint(Graphics& g) override;
+    void paint (Graphics& g) override;
     void resized() override;
 
 
