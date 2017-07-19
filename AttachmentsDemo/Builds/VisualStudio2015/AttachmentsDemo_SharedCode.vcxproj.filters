@@ -1918,6 +1918,9 @@
     <ClCompile Include="..\..\..\..\juce\modules\juce_gui_basics\widgets\juce_ComboBox.cpp">
       <Filter>Juce Modules\juce_gui_basics\widgets</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\juce\modules\juce_gui_basics\widgets\juce_ComboBox_LOG.cpp">
+      <Filter>Juce Modules\juce_gui_basics\widgets</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\juce\modules\juce_gui_basics\widgets\juce_ImageComponent.cpp">
       <Filter>Juce Modules\juce_gui_basics\widgets</Filter>
     </ClCompile>
@@ -3817,6 +3820,9 @@
       <Filter>Juce Modules\juce_gui_basics\properties</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\juce\modules\juce_gui_basics\widgets\juce_ComboBox.h">
+      <Filter>Juce Modules\juce_gui_basics\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\juce\modules\juce_gui_basics\widgets\juce_ComboBox_LOG.h">
       <Filter>Juce Modules\juce_gui_basics\widgets</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\juce\modules\juce_gui_basics\widgets\juce_ImageComponent.h">
