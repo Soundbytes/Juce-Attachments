@@ -23,6 +23,34 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "PluginProcessor.h"
 #include "SbRadioGroup.h"
+
+
+class ColorRect : public Component, public AudioProcessorValueTreeState::Listener
+{
+public:
+	ColorRect(AudioProcessorValueTreeState& params) { 
+		params.addParameterListener("color", this);
+		if (float* val = params.getRawParameterValue("color"))
+			setColor(*val);
+	}
+
+	void parameterChanged(const String& parameterID, float newValue) override {
+		setColor(newValue);
+	}
+
+	void paint(Graphics& g) override {
+		g.fillAll(bg);
+	}
+private:
+	void setColor(float val) {
+		if (val < 0.5) bg = Colours::red;
+		else if (val < 1.5) bg = Colours::green;
+		else bg = Colours::blue;
+		repaint();
+	}
+
+	Colour bg;
+};
 //[/Headers]
 
 
@@ -46,7 +74,7 @@ public:
     //[UserMethods]     -- You can add your own custom methods in this section.
     //[/UserMethods]
 
-    void paint (Graphics& g) override;
+	void paint(Graphics& g) override;
     void resized() override;
 
 
@@ -61,6 +89,7 @@ private:
 
     //==============================================================================
     ScopedPointer<SbRadioGroup> lfSelect;
+    ScopedPointer<ColorRect> colorRect;
 
 
     //==============================================================================

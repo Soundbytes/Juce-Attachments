@@ -33,15 +33,18 @@ RadioGroupAudioProcessorEditor::RadioGroupAudioProcessorEditor (RadioGroupAudioP
     //[Constructor_pre] You can add your own custom stuff here..
     //[/Constructor_pre]
 
-    addAndMakeVisible (lfSelect = new SbRadioGroup (120));
+    addAndMakeVisible (lfSelect = new SbRadioGroup (72));
     lfSelect->setName ("lfSelect");
+
+    addAndMakeVisible (colorRect = new ColorRect (params));
+    colorRect->setName ("colorRect");
 
 
     //[UserPreSize]
 	attLfSelect = new SbRadioGroupAttachment(params, "color", *lfSelect);
     //[/UserPreSize]
 
-    setSize (600, 400);
+    setSize (160, 88);
 
 
     //[Constructor] You can add your own custom stuff here..
@@ -54,6 +57,7 @@ RadioGroupAudioProcessorEditor::~RadioGroupAudioProcessorEditor()
     //[/Destructor_pre]
 
     lfSelect = nullptr;
+    colorRect = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -66,7 +70,7 @@ void RadioGroupAudioProcessorEditor::paint (Graphics& g)
     //[UserPrePaint] Add your own custom painting code here..
     //[/UserPrePaint]
 
-    g.fillAll (Colour (0xff323e44));
+	g.fillAll(Colour(0xff323e44));
 
     //[UserPaint] Add your own custom painting code here..
     //[/UserPaint]
@@ -77,7 +81,8 @@ void RadioGroupAudioProcessorEditor::resized()
     //[UserPreResize] Add your own custom resize code here..
     //[/UserPreResize]
 
-    lfSelect->setBounds (24, 24, 120, 72);
+    lfSelect->setBounds (8, 8, 72, 72);
+    colorRect->setBounds (80, 8, 72, 72);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -101,11 +106,13 @@ BEGIN_JUCER_METADATA
                  componentName="" parentClasses="public AudioProcessorEditor"
                  constructorParams="RadioGroupAudioProcessor&amp; proc" variableInitialisers="AudioProcessorEditor (&amp;proc), proc(proc), params(proc.getParams())"
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
-                 fixedSize="0" initialWidth="600" initialHeight="400">
+                 fixedSize="0" initialWidth="160" initialHeight="88">
   <BACKGROUND backgroundColour="ff323e44"/>
   <GENERICCOMPONENT name="lfSelect" id="e4b8d783bce73fe2" memberName="lfSelect" virtualName=""
-                    explicitFocusOrder="0" pos="24 24 120 72" class="SbRadioGroup"
-                    params="120"/>
+                    explicitFocusOrder="0" pos="8 8 72 72" class="SbRadioGroup" params="72"/>
+  <GENERICCOMPONENT name="colorRect" id="35cad3974ebd3408" memberName="colorRect"
+                    virtualName="" explicitFocusOrder="0" pos="80 8 72 72" class="ColorRect"
+                    params="params"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA
