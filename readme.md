@@ -30,7 +30,7 @@ In a real world application the mechanism might be used to offer:
 
 ### Please note:
 The AudioProcessorValueTreeState class design does not allow the addition of user defined Attachments from outside the class definition. Because of that I had to modify two files from the juce framework to make things possible.
-Before compiling the demo projects you will have to replace the two files juce_AudioProcessorValueTreeState.cpp and juce_AudioProcessorValueTreeState.h
+Before compiling the demo projects you will have to replace the files juce_AudioProcessorParameters.cpp, juce_AudioProcessorParameterWithID.h, juce_AudioProcessorValueTreeState.cpp and juce_AudioProcessorValueTreeState.h
 with the versions that are supplied with this release.
 
 ## Changes:
