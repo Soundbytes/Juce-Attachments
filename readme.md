@@ -18,8 +18,9 @@ There are now two groups of Parameters that are handled differently:
  - Preset Parameters
    The state of these is saved with the preset.
  - User Settings
-   Their state is loaded from a settings file when the processor is created. The file is saved whenever a user setting is changed and also when the processor is destroyed. It is recommended to disable host automation for These parameter group.
- Both preset parameters and user settings are published to the host nad can be modified through the host interface if present. 
+   Their state is loaded from a settings file when the processor is created. The file is saved whenever a user setting is changed and also when the processor is destroyed. It is recommended to disable host automation for this parameter group.
+   
+ Both preset parameters and user settings are published to the host and can be modified through the host interface if present. 
 
 ### RadioGroup
 the RadioGroup example features a component that is populated with a group of radio buttons. The Buttons are created by a SbRadioGroupAttachment upon connection to the component.
