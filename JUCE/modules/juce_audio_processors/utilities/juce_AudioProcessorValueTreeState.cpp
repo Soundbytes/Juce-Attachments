@@ -55,7 +55,7 @@ AudioProcessorParameterWithID* AudioProcessorValueTreeState::createAndAddParamet
 	std::function<float(const String&)>
 	textToValueFunction,
 	bool canAutomate,
-	const String& paramType)
+	bool saveStateWithPreset)
 {
     // All parameters must be created before giving this manager a ValueTree state!
     jassert (! state.isValid());
@@ -65,7 +65,7 @@ AudioProcessorParameterWithID* AudioProcessorValueTreeState::createAndAddParamet
 
     Parameter* p = new Parameter (*this, paramID, paramName, labelText, r,
                                   defaultVal, valueToTextFunction, textToValueFunction, canAutomate, 
-		                          paramType == paTypePreset ? presetID : settingsID);
+		                          saveStateWithPreset ? presetID : settingsID);
     processor.addParameter (p);
 	paramIDs.push_back(paramID);
     return p;

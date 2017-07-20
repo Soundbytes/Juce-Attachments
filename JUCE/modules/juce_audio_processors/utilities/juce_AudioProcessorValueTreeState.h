@@ -95,13 +95,14 @@ public:
                                                           std::function<String (float)> valueToTextFunction,
                                                           std::function<float (const String&)> textToValueFunction,
                                                           bool canAutomate = true,
-	                                                      const String& pType = paTypePreset);
+	                                                      bool saveStateWithPreset = true);
 
 	AudioProcessorParameterWithID* createAndAddParameter(const String& paramID, NormalisableRange<float>& r, float defaultVal,
 		std::function<String(float)> f2t = nullptr,
-		std::function<float(const String&)> t2f = nullptr, bool canAutomate = true, const String& paramType = paTypePreset)
+		std::function<float(const String&)> t2f = nullptr, 
+		bool canAutomate = true, bool saveStateWithPreset = true)
 	{
-		return createAndAddParameter(paramID, paramID, paramID, r, defaultVal, f2t, t2f, canAutomate, paramType);
+		return createAndAddParameter(paramID, paramID, paramID, r, defaultVal, f2t, t2f, canAutomate, saveStateWithPreset);
 	}
 
 
