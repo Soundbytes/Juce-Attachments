@@ -1623,9 +1623,6 @@
     <ClCompile Include="..\..\..\..\JUCE\modules\juce_gui_basics\widgets\juce_ComboBox.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\JUCE\modules\juce_gui_basics\widgets\juce_ComboBox_LOG.cpp">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\JUCE\modules\juce_gui_basics\widgets\juce_ImageComponent.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -2403,7 +2400,6 @@
     <ClInclude Include="..\..\..\..\JUCE\modules\juce_gui_basics\properties\juce_SliderPropertyComponent.h"/>
     <ClInclude Include="..\..\..\..\JUCE\modules\juce_gui_basics\properties\juce_TextPropertyComponent.h"/>
     <ClInclude Include="..\..\..\..\JUCE\modules\juce_gui_basics\widgets\juce_ComboBox.h"/>
-    <ClInclude Include="..\..\..\..\JUCE\modules\juce_gui_basics\widgets\juce_ComboBox_LOG.h"/>
     <ClInclude Include="..\..\..\..\JUCE\modules\juce_gui_basics\widgets\juce_ImageComponent.h"/>
     <ClInclude Include="..\..\..\..\JUCE\modules\juce_gui_basics\widgets\juce_Label.h"/>
     <ClInclude Include="..\..\..\..\JUCE\modules\juce_gui_basics\widgets\juce_ListBox.h"/>

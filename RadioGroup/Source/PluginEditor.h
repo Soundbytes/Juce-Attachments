@@ -84,11 +84,11 @@ private:
 	RadioGroupAudioProcessor& proc;
 	RadioGroupParameters & params;
 
-	ScopedPointer<SbRadioGroupAttachment>attLfSelect;
+	ScopedPointer<SbRadioGroupAttachment<TextButton>>attLfSelect;
     //[/UserVariables]
 
     //==============================================================================
-    ScopedPointer<SbRadioGroup> lfSelect;
+    ScopedPointer<SbRadioGroup<TextButton>> lfSelect;
     ScopedPointer<ColorRect> colorRect;
 
 

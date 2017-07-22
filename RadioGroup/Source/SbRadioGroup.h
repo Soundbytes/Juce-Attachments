@@ -10,18 +10,23 @@
 
 static const int radioGroupId = 99; // there is only one group in the component. Other radiogroups can use the same ID as long as they live in a different component.
 
+template<typename ButtonType> 
+class SbRadioGroupAttachment;
+
+template<typename ButtonType> 
 class SbRadioGroup : public Component, public ButtonListener
 {
 public:
 	//==============================================================================
-	SbRadioGroup(int width)
+	SbRadioGroup(int width, int height = 24)
 		: width(width), numButtons(0)
 	{}
 	virtual ~SbRadioGroup() {}
 	void addButton(const String& name) {
-		buttons.add(new ToggleButton(name));
+		buttons.add(new ButtonType(name));
 		addAndMakeVisible(buttons[numButtons]);
 		buttons[numButtons]->setRadioGroupId(radioGroupId);
+		buttons[numButtons]->setClickingTogglesState(true);
 		buttons[numButtons]->addListener(this);
 		++numButtons;
 	}
@@ -38,8 +43,8 @@ public:
 
 	void buttonClicked(Button* buttonThatWasClicked) override {
 		if (buttonThatWasClicked->getToggleState()) {
-			jassert(dynamic_cast<ToggleButton*>(buttonThatWasClicked));
-			ToggleButton* tb = static_cast<ToggleButton*>(buttonThatWasClicked);
+			jassert(dynamic_cast<ButtonType*>(buttonThatWasClicked));
+			ButtonType* tb = static_cast<ButtonType*>(buttonThatWasClicked);
 			state = buttons.indexOf(tb);
 			listeners.call(&Listener::radioGroupStateChanged, this, state);
 		}
@@ -73,8 +78,9 @@ public:
 	void removeListener(Listener* lst) { listeners.remove(lst); }
 	void setDefaultState(float newDefaultState){ defaultState = newDefaultState; }
 protected:
+	friend SbRadioGroupAttachment<ButtonType>;
 	int numButtons;
-	OwnedArray<ToggleButton> buttons;
+	OwnedArray<ButtonType> buttons;
 	ListenerList<Listener> listeners;
 	int state, defaultState;
 	int width;
@@ -84,12 +90,12 @@ protected:
 };
 
 
-
+template<typename ButtonType>
 class JUCE_API  SbRadioGroupAttachment : private AttachedControlBase,
-	private SbRadioGroup::Listener
+	private SbRadioGroup<ButtonType>::Listener
 {
 public:
-	SbRadioGroupAttachment(AudioProcessorValueTreeState& s, const String& p, SbRadioGroup& rg) 
+	SbRadioGroupAttachment(AudioProcessorValueTreeState& s, const String& p, SbRadioGroup<ButtonType>& rg)
 		: AttachedControlBase(s, p), rg(rg),  ignoreCallbacks(false)
 	{
 		range = new NormalisableRange<float>(s.getParameterRange(p));
@@ -121,13 +127,13 @@ public:
 			rg.setState(getBtnIdx(newValue), sendNotificationSync);
 		}
 	}
-	void radioGroupStateChanged(SbRadioGroup* s, int newState) override {
+	void radioGroupStateChanged(SbRadioGroup<ButtonType>* s, int newState) override {
 		const ScopedLock selfCallbackLock(selfCallbackMutex);
 		if ((!ignoreCallbacks) && (!ModifierKeys::getCurrentModifiers().isRightButtonDown()))
 			setNewUnnormalisedValue(btnIdxToValue(newState));
 	}
 private:
-	SbRadioGroup& rg;
+	SbRadioGroup<ButtonType>& rg;
 	ScopedPointer<NormalisableRange<float>>range;
 	float rangScale;
 	int getBtnIdx(float btnVal) {

@@ -33,7 +33,7 @@ RadioGroupAudioProcessorEditor::RadioGroupAudioProcessorEditor (RadioGroupAudioP
     //[Constructor_pre] You can add your own custom stuff here..
     //[/Constructor_pre]
 
-    addAndMakeVisible (lfSelect = new SbRadioGroup (72));
+    addAndMakeVisible (lfSelect = new SbRadioGroup<TextButton> (72));
     lfSelect->setName ("lfSelect");
 
     addAndMakeVisible (colorRect = new ColorRect (params));
@@ -41,7 +41,7 @@ RadioGroupAudioProcessorEditor::RadioGroupAudioProcessorEditor (RadioGroupAudioP
 
 
     //[UserPreSize]
-	attLfSelect = new SbRadioGroupAttachment(params, "color", *lfSelect);
+	attLfSelect = new SbRadioGroupAttachment<TextButton>(params, "color", *lfSelect);
     //[/UserPreSize]
 
     setSize (160, 88);
