@@ -33,18 +33,22 @@ RadioGroupAudioProcessorEditor::RadioGroupAudioProcessorEditor (RadioGroupAudioP
     //[Constructor_pre] You can add your own custom stuff here..
     //[/Constructor_pre]
 
-    addAndMakeVisible (lfSelect = new SbRadioGroup<TextButton> (72));
-    lfSelect->setName ("lfSelect");
+    addAndMakeVisible (rgRow = new SbRadioGroup<TextButton> (48, 24, true));
+    rgRow->setName ("rgRow");
+
+    addAndMakeVisible (rgCol = new SbRadioGroup<ToggleButton> (72, 24, false));
+    rgCol->setName ("rgCol");
 
     addAndMakeVisible (colorRect = new ColorRect (params));
     colorRect->setName ("colorRect");
 
 
     //[UserPreSize]
-	attLfSelect = new SbRadioGroupAttachment<TextButton>(params, "color", *lfSelect);
+	attRgRow = new SbRadioGroupAttachment<TextButton>(params, "color", *rgRow);
+	attRgCol = new SbRadioGroupAttachment<ToggleButton>(params, "color", *rgCol);
     //[/UserPreSize]
 
-    setSize (160, 88);
+    setSize (160, 120);
 
 
     //[Constructor] You can add your own custom stuff here..
@@ -56,7 +60,8 @@ RadioGroupAudioProcessorEditor::~RadioGroupAudioProcessorEditor()
     //[Destructor_pre]. You can add your own custom destruction code here..
     //[/Destructor_pre]
 
-    lfSelect = nullptr;
+    rgRow = nullptr;
+    rgCol = nullptr;
     colorRect = nullptr;
 
 
@@ -81,8 +86,9 @@ void RadioGroupAudioProcessorEditor::resized()
     //[UserPreResize] Add your own custom resize code here..
     //[/UserPreResize]
 
-    lfSelect->setBounds (8, 8, 72, 72);
-    colorRect->setBounds (80, 8, 72, 72);
+    rgRow->setBounds (8, 8, 144, 24);
+    rgCol->setBounds (8, 40, 72, 72);
+    colorRect->setBounds (80, 40, 72, 72);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -106,12 +112,16 @@ BEGIN_JUCER_METADATA
                  componentName="" parentClasses="public AudioProcessorEditor"
                  constructorParams="RadioGroupAudioProcessor&amp; proc" variableInitialisers="AudioProcessorEditor (&amp;proc), proc(proc), params(proc.getParams())"
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
-                 fixedSize="0" initialWidth="160" initialHeight="88">
+                 fixedSize="0" initialWidth="160" initialHeight="120">
   <BACKGROUND backgroundColour="ff323e44"/>
-  <GENERICCOMPONENT name="lfSelect" id="e4b8d783bce73fe2" memberName="lfSelect" virtualName=""
-                    explicitFocusOrder="0" pos="8 8 72 72" class="SbRadioGroup" params="72"/>
+  <GENERICCOMPONENT name="rgRow" id="6c19c5bbb85b34f2" memberName="rgRow" virtualName=""
+                    explicitFocusOrder="0" pos="8 8 144 24" class="SbRadioGroup&lt;TextButton&gt;"
+                    params="48, 24, true"/>
+  <GENERICCOMPONENT name="rgCol" id="e4b8d783bce73fe2" memberName="rgCol" virtualName=""
+                    explicitFocusOrder="0" pos="8 40 72 72" class="SbRadioGroup&lt;ToggleButton&gt;"
+                    params="72, 24, false"/>
   <GENERICCOMPONENT name="colorRect" id="35cad3974ebd3408" memberName="colorRect"
-                    virtualName="" explicitFocusOrder="0" pos="80 8 72 72" class="ColorRect"
+                    virtualName="" explicitFocusOrder="0" pos="80 40 72 72" class="ColorRect"
                     params="params"/>
 </JUCER_COMPONENT>
 

@@ -15,15 +15,13 @@ It is also possible now to create the Combobox item list by connecting it to a p
 ### PresetVsUserSettings
 This example illustates some modifications I have made to the AudioProcessorValueTreeState class.
 There are now two groups of Parameters that are handled differently:
- - Preset Parameters
-   The state of these is saved with the preset.
- - User Settings
-   Their state is loaded from a settings file when the processor is created. The file is saved whenever a user setting is changed and also when the processor is destroyed. It is recommended to disable host automation for this parameter group.
+ - Preset Parameters - The state of these is saved with the preset.
+ - User Settings - Their state is loaded from a settings file when the processor is created. The file is saved whenever a user setting is changed and also when the processor is destroyed. It is recommended to disable host automation for this parameter group.
    
  Both preset parameters and user settings are published to the host and can be modified through the host interface if present. 
 
 ### RadioGroup
-the RadioGroup example features a component that is populated with a group of radio buttons. The Buttons are created by a SbRadioGroupAttachment upon connection to the component.
+The RadioGroup example features a component that is populated with a group of radio buttons. The Buttons are created by a SbRadioGroupAttachment upon connection to the component.
 
 ### AttachmentsDemo:
 The AttachmentsDemo example project illustrates the use of the enhanced ComboBoxAttachment and the new LabelAttachment.
@@ -49,12 +47,12 @@ Before compiling the demo projects you will have to replace these files with the
 
 
 ## Changes:
-- Bugfix: AttachmentsDemo: Combobox now always shows the correct item text 
-- Added a SliderMonitor example 
-- Bugfix: Combobox is now initialized correctly.
-- added a stateful converter example.
-- added a radio button group example
-- modified AudioProcessorValueTreeState to allow for separate handling of user settings
+- RadioGroup: templated the component. It can now be populated with any button type.
 - added a canAutomate property to AudioProcessorParameterWithID
-
+- modified AudioProcessorValueTreeState to allow for separate handling of user settings
+- Added a radio button group example
+- Added a stateful converter example.
+- Bugfix: Combobox is now initialized correctly.
+- Added a SliderMonitor example 
+- Bugfix: AttachmentsDemo: Combobox now always shows the correct item text 
  

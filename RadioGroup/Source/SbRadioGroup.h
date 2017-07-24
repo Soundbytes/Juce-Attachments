@@ -18,8 +18,8 @@ class SbRadioGroup : public Component, public ButtonListener
 {
 public:
 	//==============================================================================
-	SbRadioGroup(int width, int height = 24)
-		: width(width), numButtons(0)
+	SbRadioGroup(int itemWidth, int itemHeight = 24, bool isRow = false)
+		: itemWidth(itemWidth), itemHeight(itemHeight), isRow(isRow), numButtons(0)
 	{}
 	virtual ~SbRadioGroup() {}
 	void addButton(const String& name) {
@@ -68,9 +68,18 @@ public:
 
 	void paint(Graphics& g) override {}
 	void resized() override {
-		for (int idx = 0; idx < numButtons; ++idx) {
-			buttons[idx]->setBounds(0, idx * 24, width, 24);
-		}
+		if (isRow) 
+			for (int idx = 0; idx < numButtons; ++idx) {
+				buttons[idx]->setBounds(idx * itemWidth, 0, itemWidth, itemHeight);
+				buttons[idx]->setConnectedEdges(((idx != 0) ? Button::ConnectedOnLeft : 0)
+					| ((idx != buttons.size()-1) ? Button::ConnectedOnRight : 0));
+			}
+		else
+			for (int idx = 0; idx < numButtons; ++idx) {
+				buttons[idx]->setBounds(0, idx * itemHeight, itemWidth, itemHeight);
+				buttons[idx]->setConnectedEdges(((idx != 0) ? Button::ConnectedOnTop : 0)
+					| ((idx != buttons.size()-1) ? Button::ConnectedOnBottom : 0));
+			}
 	}
 
 
@@ -83,7 +92,8 @@ protected:
 	OwnedArray<ButtonType> buttons;
 	ListenerList<Listener> listeners;
 	int state, defaultState;
-	int width;
+	int itemWidth, itemHeight;
+	bool isRow;
 
 	//==============================================================================
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(SbRadioGroup)
