@@ -6,7 +6,7 @@
               buildVST="1" buildVST3="1" buildAU="1" buildAUv3="0" buildRTAS="0"
               buildAAX="1" buildStandalone="1" enableIAA="0" pluginName="SliderMonitor"
               pluginDesc="SliderMonitor" pluginManufacturer="yourcompany" pluginManufacturerCode="Manu"
-              pluginCode="Fdxg" pluginChannelConfigs="{2, 2}" pluginIsSynth="0"
+              pluginCode="Fdxg" pluginChannelConfigs="{1, 2}, {2, 2}" pluginIsSynth="0"
               pluginWantsMidiIn="1" pluginProducesMidiOut="0" pluginIsMidiEffectPlugin="0"
               pluginEditorRequiresKeys="0" pluginAUExportPrefix="SliderMonitorAU"
               pluginRTASCategory="" aaxIdentifier="com.yourcompany.SliderMonitor"

@@ -7,11 +7,11 @@
               buildAUv3="0" buildRTAS="0" buildAAX="0" buildStandalone="1"
               enableIAA="0" pluginName="ConverterWithState" pluginDesc="ConverterWithState"
               pluginManufacturer="yourcompany" pluginManufacturerCode="Manu"
-              pluginCode="Owz2" pluginChannelConfigs="" pluginIsSynth="0" pluginWantsMidiIn="0"
-              pluginProducesMidiOut="0" pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0"
-              pluginAUExportPrefix="ConverterWithStateAU" pluginRTASCategory=""
-              aaxIdentifier="com.yourcompany.ConverterWithState" pluginAAXCategory="AAX_ePlugInCategory_Dynamics"
-              jucerVersion="5.0.2">
+              pluginCode="Owz2" pluginChannelConfigs="{1, 2}, {2, 2}" pluginIsSynth="0"
+              pluginWantsMidiIn="0" pluginProducesMidiOut="0" pluginIsMidiEffectPlugin="0"
+              pluginEditorRequiresKeys="0" pluginAUExportPrefix="ConverterWithStateAU"
+              pluginRTASCategory="" aaxIdentifier="com.yourcompany.ConverterWithState"
+              pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="5.0.2">
   <MAINGROUP id="IcwYZE" name="ConverterWithState">
     <GROUP id="{042014CF-F996-D82C-083C-9D807B3CBE2F}" name="Source">
       <FILE id="dzpCZn" name="SbTextConverters.h" compile="0" resource="0"

@@ -14,15 +14,16 @@
 
 //==============================================================================
 PresetVsUsersettingsAudioProcessor::PresetVsUsersettingsAudioProcessor()
+	: params(*this)
 #ifndef JucePlugin_PreferredChannelConfigurations
-     : params(*this), AudioProcessor (BusesProperties()
-                     #if ! JucePlugin_IsMidiEffect
-                      #if ! JucePlugin_IsSynth
-                       .withInput  ("Input",  AudioChannelSet::stereo(), true)
-                      #endif
-                       .withOutput ("Output", AudioChannelSet::stereo(), true)
-                     #endif
-                       )
+	, AudioProcessor(BusesProperties()
+#if ! JucePlugin_IsMidiEffect
+#if ! JucePlugin_IsSynth
+		.withInput("Input", AudioChannelSet::stereo(), true)
+#endif
+		.withOutput("Output", AudioChannelSet::stereo(), true)
+#endif
+	)
 #endif
 {
 }

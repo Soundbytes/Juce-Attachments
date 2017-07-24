@@ -14,8 +14,9 @@
 
 //==============================================================================
 RadioGroupAudioProcessor::RadioGroupAudioProcessor()
+	: params(*this) 
 #ifndef JucePlugin_PreferredChannelConfigurations
-     : params(*this), AudioProcessor (BusesProperties()
+     , AudioProcessor (BusesProperties()
                      #if ! JucePlugin_IsMidiEffect
                       #if ! JucePlugin_IsSynth
                        .withInput  ("Input",  AudioChannelSet::stereo(), true)

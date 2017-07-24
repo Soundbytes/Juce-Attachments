@@ -105,15 +105,23 @@ class JUCE_API  SbRadioGroupAttachment : private AttachedControlBase,
 	private SbRadioGroup<ButtonType>::Listener
 {
 public:
-	SbRadioGroupAttachment(AudioProcessorValueTreeState& s, const String& p, SbRadioGroup<ButtonType>& rg)
+	SbRadioGroupAttachment(AudioProcessorValueTreeState& s, const String& p, SbRadioGroup<ButtonType>& rg, bool populateGroup = true)
 		: AttachedControlBase(s, p), rg(rg),  ignoreCallbacks(false)
 	{
 		range = new NormalisableRange<float>(s.getParameterRange(p));
 		if (range->interval == 0.f) return;
 		rangScale = 1.f / range->interval;
-		rg.clear();
-		for (float btnVal = range->start; btnVal <= range->end; btnVal += range->interval) {
-			rg.addButton(getParameter()->getText(range->convertTo0to1(btnVal), 64));
+		if (populateGroup) {
+			rg.clear();
+			for (float btnVal = range->start; btnVal <= range->end; btnVal += range->interval) {
+				rg.addButton(getParameter()->getText(range->convertTo0to1(btnVal), 64));
+			}
+		}
+		else {
+			/*
+			It seems like the number of buttons available in the group is not equal to the number of choices provided by the parameter.
+			*/
+			jassert(ceilf((range->end - range->start) * rangScale) + 1 == rg.buttons.size());
 		}
 		rg.setDefaultState(getBtnIdx(getParameter()->defaultValue));
 		rg.resized();
