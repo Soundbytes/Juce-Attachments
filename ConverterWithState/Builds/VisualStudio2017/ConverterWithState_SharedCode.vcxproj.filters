@@ -2,6 +2,9 @@
 
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="ConverterWithState\SbCommon">
+      <UniqueIdentifier>{1781F319-9394-06D5-6190-4CEF1A17DF4B}</UniqueIdentifier>
+    </Filter>
     <Filter Include="ConverterWithState\Source">
       <UniqueIdentifier>{09F22177-30FC-1B6F-57D5-EA1458E9AAEF}</UniqueIdentifier>
     </Filter>
@@ -2241,7 +2244,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\SbTextConverters.h">
+    <ClInclude Include="..\..\..\SbCommon\SbTextConverters.h">
+      <Filter>ConverterWithState\SbCommon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\SbStatefulTextConverter.h">
       <Filter>ConverterWithState\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\PluginParameters.h">

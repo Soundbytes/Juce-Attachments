@@ -10,12 +10,12 @@
 
 #pragma once
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "SbTextConverters.h"
+#include "SbStatefulTextConverter.h"
 
 class ConverterWithStateParameters : public AudioProcessorValueTreeState
 {
 public:
 	ConverterWithStateParameters(AudioProcessor& p);
 
-	SbTextConverter textConverter;
+	SbStatefulTextConverter textConverter;
 };

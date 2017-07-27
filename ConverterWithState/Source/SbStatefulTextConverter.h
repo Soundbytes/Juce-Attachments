@@ -1,7 +1,7 @@
 /*
   ==============================================================================
 
-    SbTextConverters.h
+    SbStatefulTextConverter.h
     Created: 28 Jun 2017 9:38:04am
     Author:  gs.asumerauer0608
 
@@ -10,10 +10,10 @@
 
 #pragma once
 
-class SbTextConverter 
+class SbStatefulTextConverter 
 {
 public:
-	explicit SbTextConverter(const String& state) : state("numbers") { setState(state); }
+	explicit SbStatefulTextConverter(const String& state) : state("numbers") { setState(state); }
 	/*&((char)(value - 97))*/
 
 	const String f2t(float value) {

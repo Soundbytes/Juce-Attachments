@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="ConverterWithState\Source">
-      <UniqueIdentifier>{09F22177-30FC-1B6F-57D5-EA1458E9AAEF}</UniqueIdentifier>
+    <Filter Include="SliderMonitor\Source">
+      <UniqueIdentifier>{46F0BE32-12AF-36F8-3C5B-0F667573DFFE}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ConverterWithState">
-      <UniqueIdentifier>{54D6B00B-6A37-A503-8630-D3631B8E8C10}</UniqueIdentifier>
+    <Filter Include="SliderMonitor">
+      <UniqueIdentifier>{25D09E4E-661F-A973-7CF0-CE10AA0C3BA9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Juce Modules\juce_audio_basics\audio_play_head">
       <UniqueIdentifier>{52045BA8-DF89-5074-688D-A0977F25B09C}</UniqueIdentifier>
@@ -388,14 +388,20 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\PluginParameters.cpp">
-      <Filter>ConverterWithState\Source</Filter>
+    <ClCompile Include="..\..\Source\SbSlider.cpp">
+      <Filter>SliderMonitor\Source</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\PluginEditor.cpp">
-      <Filter>ConverterWithState\Source</Filter>
+    <ClCompile Include="..\..\Source\SliderMonParameters.cpp">
+      <Filter>SliderMonitor\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\SbSliderMonitor.cpp">
+      <Filter>SliderMonitor\Source</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\PluginProcessor.cpp">
-      <Filter>ConverterWithState\Source</Filter>
+      <Filter>SliderMonitor\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\PluginEditor.cpp">
+      <Filter>SliderMonitor\Source</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\JUCE\modules\juce_audio_basics\buffers\juce_AudioChannelSet.cpp">
       <Filter>Juce Modules\juce_audio_basics\buffers</Filter>
@@ -2241,17 +2247,20 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\SbTextConverters.h">
-      <Filter>ConverterWithState\Source</Filter>
+    <ClInclude Include="..\..\Source\SbSlider.h">
+      <Filter>SliderMonitor\Source</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\PluginParameters.h">
-      <Filter>ConverterWithState\Source</Filter>
+    <ClInclude Include="..\..\Source\SliderMonParameters.h">
+      <Filter>SliderMonitor\Source</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\PluginEditor.h">
-      <Filter>ConverterWithState\Source</Filter>
+    <ClInclude Include="..\..\Source\SbSliderMonitor.h">
+      <Filter>SliderMonitor\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\PluginProcessor.h">
-      <Filter>ConverterWithState\Source</Filter>
+      <Filter>SliderMonitor\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\PluginEditor.h">
+      <Filter>SliderMonitor\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\JUCE\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.h">
       <Filter>Juce Modules\juce_audio_basics\audio_play_head</Filter>

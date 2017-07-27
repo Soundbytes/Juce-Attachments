@@ -27,52 +27,39 @@
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
-    <VS2017 targetFolder="Builds/VisualStudio2017" vst3Folder="" rtasFolder=""
-            aaxFolder="">
+    <VS2017 targetFolder="Builds/VisualStudio2017">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="x64"
-                       isDebug="1" optimisation="1" targetName="AttachmentsDemo"/>
+                       isDebug="1" optimisation="1" targetName="SliderMonitor" headerPath="$(SolutionDir)..\..\Source\&#10;$(SolutionDir)..\..\..\SbCommon\"
+                       postbuildCommand="call &quot;$(ProjectDir)..\..\..\postBuild.bat&quot; &quot;$(TargetExt)&quot; $(Platform) $(TargetPath) $(ProjectDir)"/>
         <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="x64"
-                       isDebug="0" optimisation="3" targetName="AttachmentsDemo"/>
+                       isDebug="0" optimisation="3" targetName="SliderMonitor" headerPath="$(SolutionDir)..\..\Source\&#10;$(SolutionDir)..\..\..\SbCommon\"
+                       postbuildCommand="call &quot;$(ProjectDir)..\..\..\postBuild.bat&quot; &quot;$(TargetExt)&quot; $(Platform) $(TargetPath) $(ProjectDir)"/>
+        <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
+                       isDebug="1" optimisation="1" targetName="SliderMonitor" headerPath="$(SolutionDir)..\..\Source\&#10;$(SolutionDir)..\..\..\SbCommon\"
+                       postbuildCommand="call &quot;$(ProjectDir)..\..\..\postBuild.bat&quot; &quot;$(TargetExt)&quot; $(Platform) $(TargetPath) $(ProjectDir)"/>
+        <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
+                       isDebug="0" optimisation="3" targetName="SliderMonitor" headerPath="$(SolutionDir)..\..\Source\&#10;$(SolutionDir)..\..\..\SbCommon\"
+                       postbuildCommand="call &quot;$(ProjectDir)..\..\..\postBuild.bat&quot; &quot;$(TargetExt)&quot; $(Platform) $(TargetPath) $(ProjectDir)"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
-        <MODULEPATH id="juce_core" path="../../juce/modules"/>
-        <MODULEPATH id="juce_events" path="../../juce/modules"/>
-        <MODULEPATH id="juce_graphics" path="../../juce/modules"/>
-        <MODULEPATH id="juce_data_structures" path="../../juce/modules"/>
-        <MODULEPATH id="juce_gui_basics" path="../../juce/modules"/>
-        <MODULEPATH id="juce_audio_basics" path="../../juce/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="../../juce/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="../../juce/modules"/>
-        <MODULEPATH id="juce_audio_processors" path="../../juce/modules"/>
-        <MODULEPATH id="juce_audio_plugin_client" path="../../juce/modules"/>
-        <MODULEPATH id="juce_gui_extra" path="../../juce/modules"/>
-        <MODULEPATH id="juce_audio_utils" path="../../juce/modules"/>
+        <MODULEPATH id="juce_video" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_opengl" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../JUCE/modules"/>
       </MODULEPATHS>
     </VS2017>
-    <VS2015 targetFolder="Builds/VisualStudio2015" vst3Folder="" rtasFolder=""
-            aaxFolder="">
-      <CONFIGURATIONS>
-        <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="x64"
-                       isDebug="1" optimisation="1" targetName="AttachmentsDemo"/>
-        <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="x64"
-                       isDebug="0" optimisation="3" targetName="AttachmentsDemo"/>
-      </CONFIGURATIONS>
-      <MODULEPATHS>
-        <MODULEPATH id="juce_gui_basics" path="../../juce/modules"/>
-        <MODULEPATH id="juce_graphics" path="../../juce/modules"/>
-        <MODULEPATH id="juce_events" path="../../juce/modules"/>
-        <MODULEPATH id="juce_data_structures" path="../../juce/modules"/>
-        <MODULEPATH id="juce_core" path="../../juce/modules"/>
-        <MODULEPATH id="juce_audio_processors" path="../../juce/modules"/>
-        <MODULEPATH id="juce_audio_plugin_client" path="../../juce/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="../../juce/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="../../juce/modules"/>
-        <MODULEPATH id="juce_audio_basics" path="../../juce/modules"/>
-        <MODULEPATH id="juce_gui_extra" path="../../juce/modules"/>
-        <MODULEPATH id="juce_audio_utils" path="../../juce/modules"/>
-      </MODULEPATHS>
-    </VS2015>
     <XCODE_MAC targetFolder="Builds/MacOSX">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="AttachmentsDemo"/>
